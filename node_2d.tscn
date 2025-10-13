@@ -36,6 +36,8 @@ selection_enabled = true
 script = ExtResource("3_epypp")
 
 [node name="Timer" type="Timer" parent="Main panel/tty"]
+wait_time = 1.5
+autostart = true
 
 [node name="Button" type="Button" parent="Main panel"]
 offset_left = 199.99998
@@ -51,5 +53,6 @@ visible = false
 position = Vector2(-154, -8.000001)
 texture = ExtResource("6_rj586")
 
-[connection signal="pressed" from="Main panel/Button" to="Main panel/tty" method="_on_button_pressed"]
+[connection signal="timeout" from="Main panel/tty/Timer" to="Main panel/tty" method="_on_timer_timeout"]
 [connection signal="toggled" from="Main panel/Button" to="Main panel" method="_on_button_toggled"]
+[connection signal="toggled" from="Main panel/Button" to="Main panel/tty" method="_on_button_toggled"]
