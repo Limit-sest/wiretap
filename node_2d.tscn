@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://ecls1n4djcxu"]
+
+[ext_resource type="Texture2D" uid="uid://cgc21oajcql6g" path="res://assets/Sprites/Pixel Map/0.png" id="1_wtcfe"]
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="0" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-194, -2)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_wtcfe")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="0"]
+offset_left = -77.0
+offset_top = -119.0
+offset_right = 169.0
+offset_bottom = 119.0
+text = "asdafsdafsadfsafasdfasdfasfsadfsadfsadfdasfadsfdasfadsfdasfasfafddasfasfdsaaaaaaaaaaaaaaaaaaaaaaaasadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+scroll_active = false
+scroll_following = true
