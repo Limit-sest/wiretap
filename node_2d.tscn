@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=4 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="Texture2D" uid="uid://cgc21oajcql6g" path="res://assets/Sprites/Pixel Map/0.png" id="1_wtcfe"]
+[ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://bb41npcv61isl" path="res://scripts/tty.gd" id="3_epypp"]
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
@@ -13,11 +15,35 @@ position = Vector2(-194, -2)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_wtcfe")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="0"]
+[node name="tty" type="RichTextLabel" parent="0"]
 offset_left = -77.0
 offset_top = -119.0
-offset_right = 169.0
-offset_bottom = 119.0
-text = "asdafsdafsadfsafasdfasdfasfsadfsadfsadfdasfadsfdasfadsfdasfasfafddasfasfdsaaaaaaaaaaaaaaaaaaaaaaaasadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+offset_right = 85.888885
+offset_bottom = 41.22223
+scale = Vector2(1.5, 1.5)
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_0e48y")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
 scroll_active = false
 scroll_following = true
+selection_enabled = true
+script = ExtResource("3_epypp")
+
+[node name="Button" type="Button" parent="0"]
+offset_left = 201.33333
+offset_top = 112.66667
+offset_right = 223.99998
+offset_bottom = 133.66667
+
+[connection signal="pressed" from="0/Button" to="0/tty" method="_on_button_pressed"]
