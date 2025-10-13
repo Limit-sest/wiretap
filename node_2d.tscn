@@ -1,21 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=7 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="Texture2D" uid="uid://cgc21oajcql6g" path="res://assets/Sprites/Pixel Map/0.png" id="1_wtcfe"]
 [ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://5v1pgaho47gh" path="res://scripts/bulb_controller.gd" id="2_kdubu"]
 [ext_resource type="Script" uid="uid://bb41npcv61isl" path="res://scripts/tty.gd" id="3_epypp"]
+[ext_resource type="Texture2D" uid="uid://bdrymm1ipm8qu" path="res://assets/Sprites/Content/Power Hub/7.png" id="5_d21ai"]
+[ext_resource type="Texture2D" uid="uid://d3vgqqftrcdmo" path="res://assets/Sprites/Content/Bulb/1.png" id="6_rj586"]
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="0" type="Sprite2D" parent="."]
+[node name="Main panel" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-194, -2)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_wtcfe")
+script = ExtResource("2_kdubu")
 
-[node name="tty" type="RichTextLabel" parent="0"]
+[node name="tty" type="RichTextLabel" parent="Main panel"]
 offset_left = -77.0
 offset_top = -119.0
 offset_right = 85.888885
@@ -26,24 +30,26 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_0e48y")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
 scroll_active = false
 scroll_following = true
 selection_enabled = true
 script = ExtResource("3_epypp")
 
-[node name="Button" type="Button" parent="0"]
-offset_left = 201.33333
-offset_top = 112.66667
-offset_right = 223.99998
-offset_bottom = 133.66667
+[node name="Timer" type="Timer" parent="Main panel/tty"]
 
-[connection signal="pressed" from="0/Button" to="0/tty" method="_on_button_pressed"]
+[node name="Button" type="Button" parent="Main panel"]
+offset_left = 199.99998
+offset_top = 113.333336
+offset_right = 223.99998
+offset_bottom = 137.33334
+toggle_mode = true
+icon = ExtResource("5_d21ai")
+flat = true
+
+[node name="Bulb" type="Sprite2D" parent="Main panel"]
+visible = false
+position = Vector2(-154, -8.000001)
+texture = ExtResource("6_rj586")
+
+[connection signal="pressed" from="Main panel/Button" to="Main panel/tty" method="_on_button_pressed"]
+[connection signal="toggled" from="Main panel/Button" to="Main panel" method="_on_button_toggled"]
