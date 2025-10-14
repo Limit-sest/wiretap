@@ -1,23 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=7 format=3 uid="uid://chijpwqlktb06"]
 
-[ext_resource type="Texture2D" uid="uid://cgc21oajcql6g" path="res://assets/Sprites/Pixel Map/0.png" id="1_wtcfe"]
-[ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="2_0e48y"]
-[ext_resource type="Script" uid="uid://5v1pgaho47gh" path="res://scripts/bulb_controller.gd" id="2_kdubu"]
-[ext_resource type="Script" uid="uid://bb41npcv61isl" path="res://scripts/tty.gd" id="3_epypp"]
-[ext_resource type="Texture2D" uid="uid://bdrymm1ipm8qu" path="res://assets/Sprites/Content/Power Hub/7.png" id="5_d21ai"]
-[ext_resource type="Texture2D" uid="uid://d3vgqqftrcdmo" path="res://assets/Sprites/Content/Bulb/1.png" id="6_rj586"]
+[ext_resource type="Texture2D" uid="uid://cgc21oajcql6g" path="res://assets/Sprites/Pixel Map/0.png" id="1_g1aup"]
+[ext_resource type="Script" uid="uid://5v1pgaho47gh" path="res://scripts/bulb_controller.gd" id="2_lqweq"]
+[ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="3_sjsyk"]
+[ext_resource type="Script" uid="uid://bb41npcv61isl" path="res://scripts/tty.gd" id="4_f1to4"]
+[ext_resource type="Texture2D" uid="uid://bdrymm1ipm8qu" path="res://assets/Sprites/Content/Power Hub/7.png" id="5_iqqan"]
+[ext_resource type="Texture2D" uid="uid://d3vgqqftrcdmo" path="res://assets/Sprites/Content/Bulb/1.png" id="6_co66w"]
 
 [node name="Node2D" type="Node2D"]
-texture_filter = 1
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Main panel" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-194, -2)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_wtcfe")
-script = ExtResource("2_kdubu")
+texture = ExtResource("1_g1aup")
+script = ExtResource("2_lqweq")
 
 [node name="tty" type="RichTextLabel" parent="Main panel"]
 offset_left = -77.0
@@ -27,13 +24,13 @@ offset_bottom = 41.22223
 scale = Vector2(1.5, 1.5)
 focus_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("2_0e48y")
+theme_override_fonts/normal_font = ExtResource("3_sjsyk")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 scroll_active = false
 scroll_following = true
 selection_enabled = true
-script = ExtResource("3_epypp")
+script = ExtResource("4_f1to4")
 
 [node name="Timer" type="Timer" parent="Main panel/tty"]
 wait_time = 1.5
@@ -45,13 +42,13 @@ offset_top = 113.333336
 offset_right = 223.99998
 offset_bottom = 137.33334
 toggle_mode = true
-icon = ExtResource("5_d21ai")
+icon = ExtResource("5_iqqan")
 flat = true
 
 [node name="Bulb" type="Sprite2D" parent="Main panel"]
 visible = false
 position = Vector2(-154, -8.000001)
-texture = ExtResource("6_rj586")
+texture = ExtResource("6_co66w")
 
 [connection signal="timeout" from="Main panel/tty/Timer" to="Main panel/tty" method="_on_timer_timeout"]
 [connection signal="toggled" from="Main panel/Button" to="Main panel" method="_on_button_toggled"]
