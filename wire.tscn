@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo0f0agwldovs"]
+
+[ext_resource type="Script" uid="uid://q2pgntb78l0w" path="res://scripts/wire.gd" id="1_bdjww"]
+[ext_resource type="Texture2D" uid="uid://b34q66ndjwd5f" path="res://assets/Sprites/Content/UI Buttons/6.png" id="1_xe2i4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdjww"]
+size = Vector2(19, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qj5kq"]
+size = Vector2(19, 19)
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+position = Vector2(36, 42)
+script = ExtResource("1_bdjww")
+
+[node name="Port1" type="Area2D" parent="." groups=["ports"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Port1"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_bdjww")
+
+[node name="6" type="Sprite2D" parent="Port1/CollisionShape2D"]
+position = Vector2(-0.5, 0.5)
+texture = ExtResource("1_xe2i4")
+
+[node name="Port2" type="Area2D" parent="." groups=["ports"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Port2"]
+position = Vector2(96.5, -9.5)
+shape = SubResource("RectangleShape2D_qj5kq")
+
+[node name="6" type="Sprite2D" parent="Port2/CollisionShape2D"]
+position = Vector2(-0.5, 0.5)
+texture = ExtResource("1_xe2i4")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(14.21, -9.5)
+
+[connection signal="input_event" from="Port1" to="." method="_on_port_1_input_event"]
+[connection signal="input_event" from="Port2" to="." method="_on_port_2_input_event"]

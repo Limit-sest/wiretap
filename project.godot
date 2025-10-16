@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[layer_names]
+
+2d_physics/layer_2="ports"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
