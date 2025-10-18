@@ -1,4 +1,5 @@
 extends Node
+class_name Wires
 
 var active_line: Line2D 
 var is_drawing = false
@@ -57,7 +58,10 @@ func _unhandled_input(event):
 				var target_port = result[0].collider
 				if target_port.is_in_group("ports") and target_port != start_port and (target_port.is_in_group("input") != start_port.is_in_group("input")):
 					_delete_existing_connection(target_port)
-					connections.append([start_port, target_port, active_line])
+					if target_port.is_in_group("input"):
+						connections.append([target_port, start_port, active_line])
+					else:
+						connections.append([start_port, target_port, active_line])
 					# Create new active line
 					_new_line()
 					print("Connection created!")
