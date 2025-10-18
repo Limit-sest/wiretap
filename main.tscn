@@ -35,17 +35,6 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="6" type="Sprite2D" parent="Port1/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
-[node name="Port3" type="Area2D" parent="." groups=["ports"]]
-position = Vector2(444, 1)
-collision_layer = 2
-script = ExtResource("3_1bvp3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Port3"]
-shape = SubResource("RectangleShape2D_7mycd")
-
-[node name="6" type="Sprite2D" parent="Port3/CollisionShape2D"]
-texture = ExtResource("4_lquwl")
-
 [node name="Port2" type="Area2D" parent="." groups=["ports"]]
 position = Vector2(332, 82)
 collision_layer = 2
@@ -57,6 +46,17 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="6" type="Sprite2D" parent="Port2/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
+[node name="Port3" type="Area2D" parent="." groups=["ports"]]
+position = Vector2(444, 1)
+collision_layer = 2
+script = ExtResource("3_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Port3"]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="6" type="Sprite2D" parent="Port3/CollisionShape2D"]
+texture = ExtResource("4_lquwl")
+
 [connection signal="input_event" from="Port1" to="Port1" method="_on_input_event"]
-[connection signal="input_event" from="Port3" to="Port3" method="_on_input_event"]
 [connection signal="input_event" from="Port2" to="Port2" method="_on_input_event"]
+[connection signal="input_event" from="Port3" to="Port3" method="_on_input_event"]

@@ -15,6 +15,15 @@ func _new_line() -> void:
 	active_line.default_color = Color.from_hsv(randf(), 0.75, 0.9)
 	add_child(active_line)
 
+func  _delete_existing_connection(port) -> void:
+	var to_be_deleted = []
+	for connection in connections:
+		if connection.has(port):
+			to_be_deleted.append(connection)
+	for connection in to_be_deleted:
+		remove_child(connection[2])
+		connections.erase(connection)
+
 func _ready():
 	_new_line()
 
@@ -25,6 +34,7 @@ func start_wire(port_node):
 	is_drawing = true
 	start_port = port_node
 	active_line.clear_points()
+	_delete_existing_connection(start_port)
 
 	var start_pos = active_line.to_local(start_port.global_position)
 	var mouse_pos = active_line.to_local(_get_world_mouse_position())
@@ -45,6 +55,7 @@ func _unhandled_input(event):
 				# When line is dropped over a port
 				var target_port = result[0].collider
 				if target_port.is_in_group("ports") and target_port != start_port:
+					_delete_existing_connection(target_port)
 					connections.append([start_port, target_port, active_line])
 					# Create new active line
 					_new_line()
