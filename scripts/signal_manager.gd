@@ -19,3 +19,15 @@ func _on_signal_send_timeout() -> void:
 		if !next_node: break
 		current_node = _get_linked_port(next_node)
 		if !current_node: break
+	
+	var caesar = CipherUtils.encode_caesar("AHOJ")
+	print(caesar)
+	print(CipherUtils.decode_caesar(caesar))
+	
+	var numbers = CipherUtils.encode_numbers("AHOJ")
+	print(numbers)
+	print(CipherUtils.decode_numbers(numbers))
+	
+	var morse = CipherUtils.encode_morse("AHOJ")
+	print(morse)
+	print(CipherUtils.decode_morse(morse))
