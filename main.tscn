@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bo0f0agwldovs" path="res://wire.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dpmaueosf60vl" path="res://port.gd" id="3_1bvp3"]
+[ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b34q66ndjwd5f" path="res://assets/Sprites/Content/UI Buttons/6.png" id="4_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
@@ -14,49 +14,124 @@ texture_filter = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Node2D" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(-11, -2)
+position = Vector2(-576, -324)
 
-[node name="Node2D2" parent="." instance=ExtResource("2_0xm2m")]
-visible = false
-position = Vector2(255, -166)
+[node name="Polygon2D" type="Polygon2D" parent="."]
+z_index = -1
+position = Vector2(141, -106)
+polygon = PackedVector2Array(184.00839, -79.99911, 32.003025, -80.00939, 32.084595, -32.0789, 184.002, -31.976042)
+uv = PackedVector2Array(94.31128, -77.5734, 31.598236, -78.19432, 32.219177, -37.213524, 95.55313, -37.213524)
 
-[node name="Node2D3" parent="." instance=ExtResource("2_0xm2m")]
-visible = false
-position = Vector2(306, -24)
+[node name="Label" type="Label" parent="Polygon2D"]
+offset_left = 77.0
+offset_top = -65.0
+offset_right = 160.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_1bvp3")
+text = "UPPERCASE"
 
-[node name="Port1" type="Area2D" parent="." groups=["ports"]]
-position = Vector2(328, -53)
+[node name="Port1" type="Area2D" parent="Polygon2D" groups=["ports"]]
+position = Vector2(50, -57)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Port1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D/Port1"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Port1/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Polygon2D/Port1/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
-[node name="Port2" type="Area2D" parent="." groups=["ports"]]
-position = Vector2(332, 82)
+[node name="Port2" type="Area2D" parent="Polygon2D" groups=["ports"]]
+position = Vector2(163, -55)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Port2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D/Port2"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Port2/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Polygon2D/Port2/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
-[node name="Port3" type="Area2D" parent="." groups=["ports"]]
-position = Vector2(444, 1)
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+z_index = -1
+position = Vector2(152, 220)
+polygon = PackedVector2Array(184.00839, -79.99911, 32.003025, -80.00939, 32.084595, -32.0789, 184.002, -31.976042)
+uv = PackedVector2Array(94.31128, -77.5734, 31.598236, -78.19432, 32.219177, -37.213524, 95.55313, -37.213524)
+
+[node name="Label" type="Label" parent="Polygon2D2"]
+offset_left = 77.0
+offset_top = -65.0
+offset_right = 160.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_1bvp3")
+text = "numbers"
+metadata/_edit_use_anchors_ = true
+
+[node name="Port1" type="Area2D" parent="Polygon2D2" groups=["ports"]]
+position = Vector2(50, -57)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Port3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D2/Port1"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Port3/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Polygon2D2/Port1/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
-[connection signal="input_event" from="Port1" to="Port1" method="_on_input_event"]
-[connection signal="input_event" from="Port2" to="Port2" method="_on_input_event"]
-[connection signal="input_event" from="Port3" to="Port3" method="_on_input_event"]
+[node name="Port2" type="Area2D" parent="Polygon2D2" groups=["ports"]]
+position = Vector2(163, -55)
+collision_layer = 2
+script = ExtResource("3_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D2/Port2"]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="6" type="Sprite2D" parent="Polygon2D2/Port2/CollisionShape2D"]
+texture = ExtResource("4_lquwl")
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+z_index = -1
+position = Vector2(285, 43)
+polygon = PackedVector2Array(184.00839, -79.99911, 32.003025, -80.00939, 32.084595, -32.0789, 184.002, -31.976042)
+uv = PackedVector2Array(94.31128, -77.5734, 31.598236, -78.19432, 32.219177, -37.213524, 95.55313, -37.213524)
+
+[node name="Label" type="Label" parent="Polygon2D3"]
+offset_left = 77.0
+offset_top = -65.0
+offset_right = 160.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_1bvp3")
+text = "_underscore_"
+metadata/_edit_use_anchors_ = true
+
+[node name="Port1" type="Area2D" parent="Polygon2D3" groups=["ports"]]
+position = Vector2(50, -57)
+collision_layer = 2
+script = ExtResource("3_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D3/Port1"]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="6" type="Sprite2D" parent="Polygon2D3/Port1/CollisionShape2D"]
+texture = ExtResource("4_lquwl")
+
+[node name="Port2" type="Area2D" parent="Polygon2D3" groups=["ports"]]
+position = Vector2(163, -55)
+collision_layer = 2
+script = ExtResource("3_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D3/Port2"]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="6" type="Sprite2D" parent="Polygon2D3/Port2/CollisionShape2D"]
+texture = ExtResource("4_lquwl")
+
+[connection signal="input_event" from="Polygon2D/Port1" to="Polygon2D/Port1" method="_on_input_event"]
+[connection signal="input_event" from="Polygon2D/Port2" to="Polygon2D/Port2" method="_on_input_event"]
+[connection signal="input_event" from="Polygon2D2/Port1" to="Polygon2D2/Port1" method="_on_input_event"]
+[connection signal="input_event" from="Polygon2D2/Port2" to="Polygon2D2/Port2" method="_on_input_event"]
+[connection signal="input_event" from="Polygon2D3/Port1" to="Polygon2D3/Port1" method="_on_input_event"]
+[connection signal="input_event" from="Polygon2D3/Port2" to="Polygon2D3/Port2" method="_on_input_event"]

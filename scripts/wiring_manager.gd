@@ -14,6 +14,7 @@ func _new_line() -> void:
 	active_line.width = 5.0
 	active_line.default_color = Color.from_hsv(randf(), 0.75, 0.9)
 	add_child(active_line)
+	move_child(active_line, get_child_count()-1)
 
 func  _delete_existing_connection(port) -> void:
 	var to_be_deleted = []
