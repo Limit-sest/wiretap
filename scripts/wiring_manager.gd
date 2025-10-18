@@ -6,6 +6,9 @@ var start_port = null
 
 var connections = []
 
+func _get_world_mouse_position() -> Vector2:
+	return get_viewport().get_canvas_transform().affine_inverse() * get_viewport().get_mouse_position()
+
 func _ready():
 	active_line = Line2D.new()
 	active_line.width = 5.0
@@ -21,7 +24,7 @@ func start_wire(port_node):
 	active_line.clear_points()
 
 	var start_pos = active_line.to_local(start_port.global_position)
-	var mouse_pos = active_line.to_local(get_viewport().get_mouse_position())
+	var mouse_pos = active_line.to_local(_get_world_mouse_position())
 	active_line.add_point(start_pos)
 	active_line.add_point(mouse_pos)
 
@@ -30,7 +33,7 @@ func _unhandled_input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
 			var space_state = get_tree().root.get_world_2d().direct_space_state
 			var query = PhysicsPointQueryParameters2D.new()
-			query.position = get_viewport().get_global_mouse_position()
+			query.position = _get_world_mouse_position()
 			query.collide_with_areas = true
 			query.collision_mask = 2 # ports layer
 			
@@ -46,5 +49,5 @@ func _unhandled_input(event):
 			
 func _process(delta):
 	if is_drawing:
-		var mouse_pos = active_line.to_local(get_viewport().get_mouse_position())
+		var mouse_pos = active_line.to_local(_get_world_mouse_position())
 		active_line.set_point_position(1, mouse_pos)

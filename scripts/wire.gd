@@ -42,8 +42,8 @@ func handle_port_click(event: InputEvent, node) -> void:
 				line.add_point(line.to_local(node.global_position))
 				line.add_point(line.to_local(get_global_mouse_position()))
 
-func _on_port_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	handle_port_click(event, port1)
-
-func _on_port_2_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	handle_port_click(event, port2)
+#func _on_port_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	#handle_port_click(event, port1)
+#
+#func _on_port_2_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	#handle_port_click(event, port2)

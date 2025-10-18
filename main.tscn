@@ -45,3 +45,6 @@ shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="6" type="Sprite2D" parent="Port2/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
+
+[connection signal="input_event" from="Port1" to="Port1" method="_on_input_event"]
+[connection signal="input_event" from="Port2" to="Port2" method="_on_input_event"]
