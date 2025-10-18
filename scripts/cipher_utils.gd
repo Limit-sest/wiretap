@@ -1,6 +1,6 @@
 class_name CipherUtils
 
-const ALPHABET = " abcdefghijklmnopqrstuvwxyz1234567890.,?!:"
+const ALPHABET = " abcdefghijklmnopqrstuvwxyz1234567890.,?!:-"
 const MORSE_CODE = {
 	"a": ".-", "b": "-...", "c": "-.-.", "d": "-..", "e": ".", "f": "..-.",
 	"g": "--.", "h": "....", "i": "..", "j": ".---", "k": "-.-", "l": ".-..",
@@ -36,10 +36,12 @@ static func encode_caesar(string: String, shift = 13) -> String:
 			final_string += c
 			continue
 		index += shift
-		if index > ALPHABET.length():
+		if index >= ALPHABET.length():
 			index -= ALPHABET.length()
+			continue
 		elif index < 0:
 			index += ALPHABET.length()
+			continue
 		final_string += ALPHABET[index]
 	return final_string
 
@@ -82,3 +84,15 @@ static func decode_morse(string: String) -> String:
 		else: final_string += c
 		
 	return final_string
+
+static func encode_random(string: String) -> String:
+	var functions = [encode_caesar, encode_numbers, encode_morse]
+	var used = []
+	var working_string = string
+	for i in range(2):
+		var index = randi() % 3
+		while used.has(index):
+			index = randi() % 3
+		used.append(index)
+		working_string = functions[index].call(working_string)
+	return working_string
