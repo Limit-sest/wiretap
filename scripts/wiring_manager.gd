@@ -55,7 +55,7 @@ func _unhandled_input(event):
 			if not result.is_empty():
 				# When line is dropped over a port
 				var target_port = result[0].collider
-				if target_port.is_in_group("ports") and target_port != start_port:
+				if target_port.is_in_group("ports") and target_port != start_port and (target_port.is_in_group("input") != start_port.is_in_group("input")):
 					_delete_existing_connection(target_port)
 					connections.append([start_port, target_port, active_line])
 					# Create new active line
