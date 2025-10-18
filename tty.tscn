@@ -19,22 +19,20 @@ script = ExtResource("2_lqweq")
 [node name="tty" type="RichTextLabel" parent="Main panel"]
 offset_left = -77.0
 offset_top = -119.0
-offset_right = 85.888885
-offset_bottom = 41.22223
-scale = Vector2(1.5, 1.5)
-focus_mode = 2
+offset_right = 128.27777
+offset_bottom = 79.05554
+scale = Vector2(1.2, 1.2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_sjsyk")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 scroll_active = false
 scroll_following = true
-selection_enabled = true
 script = ExtResource("4_f1to4")
 
 [node name="Timer" type="Timer" parent="Main panel/tty"]
-wait_time = 1.5
-autostart = true
+unique_name_in_owner = true
+wait_time = 0.009999999999999998
 
 [node name="Button" type="Button" parent="Main panel"]
 offset_left = 199.99998

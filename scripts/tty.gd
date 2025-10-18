@@ -1,21 +1,19 @@
 extends RichTextLabel
 
-var enabled_decipher = false
-var print_text = "Cheeeeeeeeeeeeeeeeeese"
+@onready var string_print = ""
+@onready var print_index = -1
 
-func _on_button_toggled(toggled_on: bool) -> void:
-	enabled_decipher = toggled_on
+func print_tty(string: String) -> void:
+	if print_index == -1:
+		string_print = string
+		append_text("\n\n")
+		print_index = 0
 
-#func rand_str(input: String) -> String:
-	#var chars = "abcdefghijklmnopqrstuvwxyz-"
-	#var random_string = ""
-	#for i in range(input.length()):
-		#random_string += chars[randi() % chars.length()]
-	#return random_string
+#func _on_button_toggled(toggled_on: bool) -> void:
+	#pass
 
-func _on_timer_timeout() -> void:
-	if enabled_decipher:
-		append_text("\n"+print_text)
-	#else:
-		#append_text("\n"+rand_str(print_text))
-		
+func _process(_delta: float) -> void:
+	if print_index != -1:
+		append_text(string_print[print_index])
+		print_index += 1
+		if print_index >= string_print.length(): print_index = -1

@@ -16,6 +16,7 @@ script = ExtResource("1_lquwl")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="tty" parent="." instance=ExtResource("1_ig7tw")]
+unique_name_in_owner = true
 position = Vector2(-576, -324)
 
 [node name="Numbers" type="Polygon2D" parent="."]
@@ -191,6 +192,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 texture = ExtResource("4_lquwl")
 
 [node name="Signal send" type="Timer" parent="."]
+wait_time = 2.5
 autostart = true
 
 [connection signal="input_event" from="Numbers/Input" to="Numbers/Input" method="_on_input_event"]
