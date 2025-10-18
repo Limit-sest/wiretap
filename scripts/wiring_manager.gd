@@ -1,5 +1,4 @@
 extends Node
-class_name Wires
 
 var active_line: Line2D 
 var is_drawing = false

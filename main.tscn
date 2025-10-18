@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=7 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bs1meisqsegby" path="res://scripts/signal_manager.gd" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://dpmaueosf60vl" path="res://port.gd" id="3_1bvp3"]
 [ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b34q66ndjwd5f" path="res://assets/Sprites/Content/UI Buttons/6.png" id="4_lquwl"]
@@ -10,10 +11,12 @@ size = Vector2(19, 19)
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_lquwl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Node2D" parent="." instance=ExtResource("1_ig7tw")]
+[node name="tty" parent="." instance=ExtResource("1_ig7tw")]
+visible = false
 position = Vector2(-576, -324)
 
 [node name="Numbers" type="Polygon2D" parent="."]
@@ -32,26 +35,26 @@ theme_override_fonts/font = ExtResource("4_1bvp3")
 text = "1 2 3 → ABC"
 metadata/_edit_use_anchors_ = true
 
-[node name="Port1" type="Area2D" parent="Numbers" groups=["input", "ports"]]
+[node name="Input" type="Area2D" parent="Numbers" groups=["input", "ports"]]
 position = Vector2(50, -57)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Numbers/Port1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Numbers/Input"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Numbers/Port1/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Numbers/Input/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
-[node name="Port2" type="Area2D" parent="Numbers" groups=["output", "ports"]]
+[node name="Output" type="Area2D" parent="Numbers" groups=["output", "ports"]]
 position = Vector2(163, -55)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Numbers/Port2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Numbers/Output"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Numbers/Port2/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Numbers/Output/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
 [node name="Morse" type="Polygon2D" parent="."]
@@ -71,26 +74,26 @@ text = ".-/-.../-.-.
 → ABC"
 metadata/_edit_use_anchors_ = true
 
-[node name="Port1" type="Area2D" parent="Morse" groups=["input", "ports"]]
+[node name="Input" type="Area2D" parent="Morse" groups=["input", "ports"]]
 position = Vector2(50, -57)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Morse/Port1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Morse/Input"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Morse/Port1/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Morse/Input/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
-[node name="Port2" type="Area2D" parent="Morse" groups=["output", "ports"]]
+[node name="Output" type="Area2D" parent="Morse" groups=["output", "ports"]]
 position = Vector2(163, -55)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Morse/Port2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Morse/Output"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Morse/Port2/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Morse/Output/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
 [node name="Caesar" type="Polygon2D" parent="."]
@@ -109,26 +112,26 @@ theme_override_fonts/font = ExtResource("4_1bvp3")
 text = "DEF → ABC"
 metadata/_edit_use_anchors_ = true
 
-[node name="Port1" type="Area2D" parent="Caesar" groups=["input", "ports"]]
+[node name="Input" type="Area2D" parent="Caesar" groups=["input", "ports"]]
 position = Vector2(50, -57)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Caesar/Port1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caesar/Input"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Caesar/Port1/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Caesar/Input/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
-[node name="Port2" type="Area2D" parent="Caesar" groups=["output", "ports"]]
+[node name="Output" type="Area2D" parent="Caesar" groups=["output", "ports"]]
 position = Vector2(163, -55)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Caesar/Port2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caesar/Output"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Caesar/Port2/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Caesar/Output/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
 [node name="Display" type="Polygon2D" parent="."]
@@ -148,18 +151,19 @@ text = "Display
 input"
 metadata/_edit_use_anchors_ = true
 
-[node name="Port1" type="Area2D" parent="Display" groups=["input", "ports"]]
+[node name="Input" type="Area2D" parent="Display" groups=["input", "ports"]]
 position = Vector2(50, -57)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Display/Port1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Display/Input"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Display/Port1/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Display/Input/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
 [node name="Anthenna" type="Polygon2D" parent="."]
+unique_name_in_owner = true
 z_index = -1
 position = Vector2(143, 142)
 polygon = PackedVector2Array(184.00839, -79.99911, 32.003025, -80.00939, 32.084595, -32.0789, 184.002, -31.976042)
@@ -176,22 +180,26 @@ text = "Athenna
 reciever"
 metadata/_edit_use_anchors_ = true
 
-[node name="Port2" type="Area2D" parent="Anthenna" groups=["output", "ports"]]
+[node name="Output" type="Area2D" parent="Anthenna" groups=["output", "ports"]]
 position = Vector2(163, -55)
 collision_layer = 2
 script = ExtResource("3_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Anthenna/Port2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Anthenna/Output"]
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="6" type="Sprite2D" parent="Anthenna/Port2/CollisionShape2D"]
+[node name="6" type="Sprite2D" parent="Anthenna/Output/CollisionShape2D"]
 texture = ExtResource("4_lquwl")
 
-[connection signal="input_event" from="Numbers/Port1" to="Numbers/Port1" method="_on_input_event"]
-[connection signal="input_event" from="Numbers/Port2" to="Numbers/Port2" method="_on_input_event"]
-[connection signal="input_event" from="Morse/Port1" to="Morse/Port1" method="_on_input_event"]
-[connection signal="input_event" from="Morse/Port2" to="Morse/Port2" method="_on_input_event"]
-[connection signal="input_event" from="Caesar/Port1" to="Caesar/Port1" method="_on_input_event"]
-[connection signal="input_event" from="Caesar/Port2" to="Caesar/Port2" method="_on_input_event"]
-[connection signal="input_event" from="Display/Port1" to="Display/Port1" method="_on_input_event"]
-[connection signal="input_event" from="Anthenna/Port2" to="Anthenna/Port2" method="_on_input_event"]
+[node name="Signal send" type="Timer" parent="."]
+autostart = true
+
+[connection signal="input_event" from="Numbers/Input" to="Numbers/Input" method="_on_input_event"]
+[connection signal="input_event" from="Numbers/Output" to="Numbers/Output" method="_on_input_event"]
+[connection signal="input_event" from="Morse/Input" to="Morse/Input" method="_on_input_event"]
+[connection signal="input_event" from="Morse/Output" to="Morse/Output" method="_on_input_event"]
+[connection signal="input_event" from="Caesar/Input" to="Caesar/Input" method="_on_input_event"]
+[connection signal="input_event" from="Caesar/Output" to="Caesar/Output" method="_on_input_event"]
+[connection signal="input_event" from="Display/Input" to="Display/Input" method="_on_input_event"]
+[connection signal="input_event" from="Anthenna/Output" to="Anthenna/Output" method="_on_input_event"]
+[connection signal="timeout" from="Signal send" to="." method="_on_signal_send_timeout"]
