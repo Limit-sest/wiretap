@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=17 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bs1meisqsegby" path="res://scripts/signal_manager.gd" id="1_lquwl"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c4t77te82hyv4" path="res://assets/Sprites/Custom/numbers_text.png" id="10_efxa6"]
 [ext_resource type="Texture2D" uid="uid://duqxc8k81l7n4" path="res://assets/Sprites/Custom/morse_text.png" id="11_dg77c"]
 [ext_resource type="Texture2D" uid="uid://s7bakdsjyuct" path="res://assets/Sprites/Custom/caesar_text.png" id="12_dg77c"]
+[ext_resource type="Texture2D" uid="uid://c8lx38grn8fhl" path="res://assets/Sprites/bg.png" id="15_vivmo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4c57u"]
 radius = 12.0
@@ -21,6 +22,12 @@ radius = 12.0
 [node name="Main" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(4.767939, 51.743675)
+scale = Vector2(0.5090124, 0.51265126)
+texture = ExtResource("15_vivmo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -261,10 +268,10 @@ texture = ExtResource("8_w48qg")
 offset_left = -287.0
 offset_top = 80.0
 offset_right = -122.0
-offset_bottom = 135.0
+offset_bottom = 149.0
 theme_override_fonts/normal_font = ExtResource("4_1bvp3")
 text = "Try to decode the recieved signal!
-Use mouse to create connections."
+The signal flows through the wires, which you can connect using mouse."
 
 [connection signal="timeout" from="Signal send" to="." method="_on_signal_send_timeout"]
 [connection signal="input_event" from="CanvasGroup/Display/Input" to="CanvasGroup/Display/Input" method="_on_input_event"]
