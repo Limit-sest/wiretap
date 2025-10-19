@@ -19,6 +19,13 @@ config/icon="res://icon.svg"
 
 WiringManager="*res://scripts/wiring_manager.gd"
 
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
@@ -31,3 +38,4 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true

@@ -24,7 +24,7 @@ script = ExtResource("1_lquwl")
 
 [node name="tty" parent="." instance=ExtResource("1_ig7tw")]
 unique_name_in_owner = true
-position = Vector2(-214, 0)
+position = Vector2(-90, -1)
 
 [node name="Signal send" type="Timer" parent="."]
 wait_time = 2.5
@@ -36,9 +36,7 @@ position = Vector2(0, -25)
 
 [node name="Display" type="Sprite2D" parent="CanvasGroup"]
 position = Vector2(341, 245)
-scale = Vector2(1.2, 1.2)
 texture = ExtResource("6_7mycd")
-offset = Vector2(0.5, 0.5)
 
 [node name="Input" type="Area2D" parent="CanvasGroup/Display" groups=["input", "ports"]]
 position = Vector2(-74, -1)
@@ -63,9 +61,7 @@ texture = ExtResource("7_kek77")
 [node name="Antenna" type="Sprite2D" parent="CanvasGroup"]
 unique_name_in_owner = true
 position = Vector2(340, -195)
-scale = Vector2(1.2, 1.2)
 texture = ExtResource("6_7mycd")
-offset = Vector2(0.5, 0.5)
 
 [node name="Output" type="Area2D" parent="CanvasGroup/Antenna" groups=["output", "ports"]]
 position = Vector2(75, -13.333336)
@@ -89,9 +85,7 @@ texture = ExtResource("8_5vw27")
 
 [node name="Numbers" type="Sprite2D" parent="CanvasGroup"]
 position = Vector2(340, 25)
-scale = Vector2(1.2, 1.2)
 texture = ExtResource("6_7mycd")
-offset = Vector2(0.5, 0.5)
 
 [node name="Output" type="Area2D" parent="CanvasGroup/Numbers" groups=["output", "ports"]]
 position = Vector2(75, -13.333332)
@@ -123,10 +117,8 @@ position = Vector2(0.50000507, 0)
 texture = ExtResource("5_272bh")
 
 [node name="Morse" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(340, -85)
-scale = Vector2(1.2, 1.2)
+position = Vector2(220, -90)
 texture = ExtResource("6_7mycd")
-offset = Vector2(0.5, 0.5)
 
 [node name="Output" type="Area2D" parent="CanvasGroup/Morse" groups=["output", "ports"]]
 position = Vector2(75, -14.166669)
@@ -158,9 +150,7 @@ texture = ExtResource("5_272bh")
 
 [node name="Caesar" type="Sprite2D" parent="CanvasGroup"]
 position = Vector2(340, 135)
-scale = Vector2(1.2, 1.2)
 texture = ExtResource("6_7mycd")
-offset = Vector2(0.5, 0.5)
 
 [node name="Output" type="Area2D" parent="CanvasGroup/Caesar" groups=["output", "ports"]]
 position = Vector2(75, -14.166669)
