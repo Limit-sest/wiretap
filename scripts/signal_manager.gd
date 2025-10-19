@@ -9,6 +9,23 @@ var decode_functions = {
 	"Caesar": CipherUtils.decode_caesar
 }
 
+func _ready():
+	# Create default connection from Antenna to Display
+	var antenna_output = %Antenna/Output
+	var display_input = $CanvasGroup/Display/Input
+	
+	var line = Line2D.new()
+	line.width = 5.0
+	line.default_color = Color.from_hsv(0.58, 0.75, 0.9)  # Blueish color
+	WiringManager.add_child(line)
+	
+	var start_pos = line.to_local(antenna_output.global_position)
+	var end_pos = line.to_local(display_input.global_position)
+	line.add_point(start_pos)
+	line.add_point(end_pos)
+	
+	WiringManager.connections.append([display_input, antenna_output, line])
+
 func _get_linked_port(first_port: Area2D): # Get output port in the same module
 	var parent = first_port.get_parent()
 	return [parent.find_child("Output"), parent.name]

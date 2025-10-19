@@ -36,12 +36,8 @@ static func encode_caesar(string: String, shift = 13) -> String:
 			final_string += c
 			continue
 		index += shift
-		if index >= ALPHABET.length():
-			index -= ALPHABET.length()
-			continue
-		elif index < 0:
-			index += ALPHABET.length()
-			continue
+		if index >= ALPHABET.length() or index < 0:
+			index = index % ALPHABET.length()
 		final_string += ALPHABET[index]
 	return final_string
 
@@ -89,11 +85,13 @@ static func encode_random(string: String) -> String:
 	var functions = [encode_caesar, encode_numbers, encode_morse]
 	var used = []
 	var working_string = string
-	for i in range(2):
+	for i in range(1):
 		var index = randi() % 3
 		while used.has(index):
 			index = randi() % 3
 		used.append(index)
-		print("encoding with " + str(functions[index]))
-		working_string = functions[index].call(working_string)
+		#print("encoding with " + str(functions[index]))
+		working_string = functions[2].call(working_string)
+		working_string = functions[0].call(working_string)
+	print(working_string)
 	return working_string
