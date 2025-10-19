@@ -24,7 +24,7 @@ script = ExtResource("1_lquwl")
 
 [node name="tty" parent="." instance=ExtResource("1_ig7tw")]
 unique_name_in_owner = true
-position = Vector2(-90, -1)
+position = Vector2(-205, 0)
 
 [node name="Signal send" type="Timer" parent="."]
 wait_time = 2.5
@@ -35,7 +35,7 @@ z_index = -1
 position = Vector2(0, -25)
 
 [node name="Display" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(341, 245)
+position = Vector2(212, 25)
 texture = ExtResource("6_7mycd")
 
 [node name="Input" type="Area2D" parent="CanvasGroup/Display" groups=["input", "ports"]]
@@ -60,7 +60,7 @@ texture = ExtResource("7_kek77")
 
 [node name="Antenna" type="Sprite2D" parent="CanvasGroup"]
 unique_name_in_owner = true
-position = Vector2(340, -195)
+position = Vector2(24, 119)
 texture = ExtResource("6_7mycd")
 
 [node name="Output" type="Area2D" parent="CanvasGroup/Antenna" groups=["output", "ports"]]
@@ -84,7 +84,7 @@ position = Vector2(0, -26)
 texture = ExtResource("8_5vw27")
 
 [node name="Numbers" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(340, 25)
+position = Vector2(212, -68)
 texture = ExtResource("6_7mycd")
 
 [node name="Output" type="Area2D" parent="CanvasGroup/Numbers" groups=["output", "ports"]]
@@ -117,7 +117,7 @@ position = Vector2(0.50000507, 0)
 texture = ExtResource("5_272bh")
 
 [node name="Morse" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(220, -90)
+position = Vector2(24, -68)
 texture = ExtResource("6_7mycd")
 
 [node name="Output" type="Area2D" parent="CanvasGroup/Morse" groups=["output", "ports"]]
@@ -149,7 +149,7 @@ shape = SubResource("CircleShape2D_4c57u")
 texture = ExtResource("5_272bh")
 
 [node name="Caesar" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(340, 135)
+position = Vector2(24, 25)
 texture = ExtResource("6_7mycd")
 
 [node name="Output" type="Area2D" parent="CanvasGroup/Caesar" groups=["output", "ports"]]
