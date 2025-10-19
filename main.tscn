@@ -1,14 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=16 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bs1meisqsegby" path="res://scripts/signal_manager.gd" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://dpmaueosf60vl" path="res://port.gd" id="3_1bvp3"]
+[ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://pnxp8nov1c1m" path="res://assets/Sprites/Custom/input.png" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://bnomwum6omcts" path="res://assets/Sprites/Custom/display_symbolt.png" id="6_5vw27"]
 [ext_resource type="Texture2D" uid="uid://cxfelrk8jll08" path="res://assets/Sprites/Custom/module_bg.png" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dw7b83wjviduf" path="res://assets/Sprites/Custom/display_text.png" id="7_kek77"]
 [ext_resource type="Texture2D" uid="uid://bqb8v5u7h8hrd" path="res://assets/Sprites/Custom/antenna_text.png" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://xvroh88gxhg" path="res://assets/Sprites/Custom/antenna_symbol.png" id="8_kek77"]
+[ext_resource type="Texture2D" uid="uid://cvhvsebtm7c81" path="res://assets/Sprites/Content/Power Hub/5.png" id="8_w48qg"]
 [ext_resource type="Texture2D" uid="uid://c4t77te82hyv4" path="res://assets/Sprites/Custom/numbers_text.png" id="10_efxa6"]
 [ext_resource type="Texture2D" uid="uid://duqxc8k81l7n4" path="res://assets/Sprites/Custom/morse_text.png" id="11_dg77c"]
 [ext_resource type="Texture2D" uid="uid://s7bakdsjyuct" path="res://assets/Sprites/Custom/caesar_text.png" id="12_dg77c"]
@@ -24,7 +26,7 @@ script = ExtResource("1_lquwl")
 
 [node name="tty" parent="." instance=ExtResource("1_ig7tw")]
 unique_name_in_owner = true
-position = Vector2(-205, 0)
+position = Vector2(-205, -40)
 
 [node name="Signal send" type="Timer" parent="."]
 wait_time = 2.5
@@ -58,6 +60,21 @@ texture = ExtResource("6_5vw27")
 position = Vector2(0, -26)
 texture = ExtResource("7_kek77")
 
+[node name="pin1" type="Sprite2D" parent="CanvasGroup/Display"]
+visible = false
+position = Vector2(34, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin2" type="Sprite2D" parent="CanvasGroup/Display"]
+visible = false
+position = Vector2(42, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin3" type="Sprite2D" parent="CanvasGroup/Display"]
+visible = false
+position = Vector2(50, 30)
+texture = ExtResource("8_w48qg")
+
 [node name="Antenna" type="Sprite2D" parent="CanvasGroup"]
 unique_name_in_owner = true
 position = Vector2(24, 119)
@@ -82,6 +99,21 @@ texture = ExtResource("8_kek77")
 [node name="Sprite2D2" type="Sprite2D" parent="CanvasGroup/Antenna"]
 position = Vector2(0, -26)
 texture = ExtResource("8_5vw27")
+
+[node name="pin1" type="Sprite2D" parent="CanvasGroup/Antenna"]
+visible = false
+position = Vector2(34, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin2" type="Sprite2D" parent="CanvasGroup/Antenna"]
+visible = false
+position = Vector2(42, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin3" type="Sprite2D" parent="CanvasGroup/Antenna"]
+visible = false
+position = Vector2(50, 30)
+texture = ExtResource("8_w48qg")
 
 [node name="Numbers" type="Sprite2D" parent="CanvasGroup"]
 position = Vector2(212, -68)
@@ -116,6 +148,21 @@ shape = SubResource("CircleShape2D_4c57u")
 position = Vector2(0.50000507, 0)
 texture = ExtResource("5_272bh")
 
+[node name="pin1" type="Sprite2D" parent="CanvasGroup/Numbers"]
+visible = false
+position = Vector2(34, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin2" type="Sprite2D" parent="CanvasGroup/Numbers"]
+visible = false
+position = Vector2(42, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin3" type="Sprite2D" parent="CanvasGroup/Numbers"]
+visible = false
+position = Vector2(50, 30)
+texture = ExtResource("8_w48qg")
+
 [node name="Morse" type="Sprite2D" parent="CanvasGroup"]
 position = Vector2(24, -68)
 texture = ExtResource("6_7mycd")
@@ -148,6 +195,21 @@ shape = SubResource("CircleShape2D_4c57u")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Morse/Input/CollisionShape2D"]
 texture = ExtResource("5_272bh")
 
+[node name="pin1" type="Sprite2D" parent="CanvasGroup/Morse"]
+visible = false
+position = Vector2(34, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin2" type="Sprite2D" parent="CanvasGroup/Morse"]
+visible = false
+position = Vector2(42, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin3" type="Sprite2D" parent="CanvasGroup/Morse"]
+visible = false
+position = Vector2(50, 30)
+texture = ExtResource("8_w48qg")
+
 [node name="Caesar" type="Sprite2D" parent="CanvasGroup"]
 position = Vector2(24, 25)
 texture = ExtResource("6_7mycd")
@@ -179,6 +241,30 @@ shape = SubResource("CircleShape2D_4c57u")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Caesar/Input/CollisionShape2D"]
 texture = ExtResource("5_272bh")
+
+[node name="pin1" type="Sprite2D" parent="CanvasGroup/Caesar"]
+visible = false
+position = Vector2(34, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin2" type="Sprite2D" parent="CanvasGroup/Caesar"]
+visible = false
+position = Vector2(42, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="pin3" type="Sprite2D" parent="CanvasGroup/Caesar"]
+visible = false
+position = Vector2(50, 30)
+texture = ExtResource("8_w48qg")
+
+[node name="Tutorial" type="RichTextLabel" parent="."]
+offset_left = -287.0
+offset_top = 80.0
+offset_right = -122.0
+offset_bottom = 135.0
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+text = "Try to decode the recieved signal!
+Use mouse to create connections."
 
 [connection signal="timeout" from="Signal send" to="." method="_on_signal_send_timeout"]
 [connection signal="input_event" from="CanvasGroup/Display/Input" to="CanvasGroup/Display/Input" method="_on_input_event"]

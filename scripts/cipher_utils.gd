@@ -49,16 +49,22 @@ static func encode_numbers(string: String) -> String:
 	for c in string.to_lower():
 		var index = ALPHABET.find(c)
 		if index == -1: 
-			final_string += c
+			final_string += c + " "
 			continue
 		final_string += str(index) + " "
-	return final_string
+	return final_string.strip_edges()
 
 static func decode_numbers(string: String) -> String:
 	var final_string = ""
 	for c in string.split(" "):
+		if c.is_empty():
+			continue
 		if c.is_valid_int():
-			final_string += ALPHABET[c.to_int()]
+			var idx = c.to_int()
+			if idx >= 0 and idx < ALPHABET.length():
+				final_string += ALPHABET[idx]
+			else:
+				final_string += c
 		else:
 			final_string += c
 	return final_string
@@ -69,12 +75,14 @@ static func encode_morse(string: String) -> String:
 		if MORSE_CODE.has(c):
 			final_string += MORSE_CODE[c] + " "
 		else: final_string += c
-	return final_string
+	return final_string.strip_edges()
 	
 static func decode_morse(string: String) -> String:
 	var final_string = ""
 		
 	for c in string.split(" "):
+		if c.is_empty():
+			continue
 		if MORSE_CODE_REVERSE.has(c):
 			final_string += MORSE_CODE_REVERSE[c]
 		else: final_string += c
@@ -85,7 +93,7 @@ static func encode_random(string: String) -> String:
 	var functions = [encode_caesar, encode_numbers, encode_morse]
 	var used = []
 	var working_string = string
-	for i in range(1):
+	for i in range(2):
 		var index = randi() % 3
 		while used.has(index):
 			index = randi() % 3

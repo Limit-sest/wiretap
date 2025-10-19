@@ -35,17 +35,44 @@ func _get_next_port(output_port: Area2D): # Get connected port with wire
 		if connection[1] == output_port:
 			return connection[0]
 
+func _animate_module_pins(module: Node2D) -> void:
+	var pins = [module.find_child("pin1"), module.find_child("pin2"), module.find_child("pin3")]
+	
+	for i in range(3):
+		if pins[i]:
+			for pin in pins:
+				if pin:
+					pin.visible = false
+			pins[i].visible = true
+			await get_tree().process_frame
+			await get_tree().process_frame
+			await get_tree().process_frame
+			
+	
+	# Hide all pins after animation
+	for pin in pins:
+		if pin:
+			pin.visible = false
+
 func _on_signal_send_timeout() -> void:
 	var current_node = initial_node
 	var working_string = encoded_string
+	
+	# Animate the starting module (Antenna)
+	await _animate_module_pins(current_node.get_parent())
+	
 	while true:
 		var next_node = _get_next_port(current_node)
 		if !next_node: 
 			break
 		elif next_node.get_parent().name == "Display":
 			%"tty/Sprite2D/tty".print_tty(working_string)
+			await _animate_module_pins(next_node.get_parent())
+			break
 		var linked_port = _get_linked_port(next_node)
 		current_node = linked_port[0]
 		if !current_node: break
 		working_string = decode_functions[linked_port[1]].call(working_string)
+		# Animate the current module
+		await _animate_module_pins(current_node.get_parent())
 	
