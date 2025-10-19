@@ -9,9 +9,6 @@ func print_tty(string: String) -> void:
 		append_text("\n\n")
 		print_index = 0
 
-#func _on_button_toggled(toggled_on: bool) -> void:
-	#pass
-
 func _process(_delta: float) -> void:
 	if print_index != -1:
 		append_text(string_print[print_index])

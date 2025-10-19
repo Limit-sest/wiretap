@@ -1,52 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://chijpwqlktb06"]
+[gd_scene load_steps=4 format=3 uid="uid://chijpwqlktb06"]
 
-[ext_resource type="Texture2D" uid="uid://cgc21oajcql6g" path="res://assets/Sprites/Pixel Map/0.png" id="1_g1aup"]
-[ext_resource type="Script" uid="uid://5v1pgaho47gh" path="res://scripts/bulb_controller.gd" id="2_lqweq"]
 [ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="3_sjsyk"]
+[ext_resource type="Texture2D" uid="uid://8b01gwewrd77" path="res://assets/Sprites/Custom/tty.png" id="3_u8rn0"]
 [ext_resource type="Script" uid="uid://bb41npcv61isl" path="res://scripts/tty.gd" id="4_f1to4"]
-[ext_resource type="Texture2D" uid="uid://bdrymm1ipm8qu" path="res://assets/Sprites/Content/Power Hub/7.png" id="5_iqqan"]
-[ext_resource type="Texture2D" uid="uid://d3vgqqftrcdmo" path="res://assets/Sprites/Content/Bulb/1.png" id="6_co66w"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Main panel" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_g1aup")
-script = ExtResource("2_lqweq")
+texture = ExtResource("3_u8rn0")
 
-[node name="tty" type="RichTextLabel" parent="Main panel"]
-offset_left = -77.0
-offset_top = -119.0
-offset_right = 128.27777
-offset_bottom = 79.05554
-scale = Vector2(1.2, 1.2)
+[node name="tty" type="RichTextLabel" parent="Sprite2D"]
+offset_left = -94.0
+offset_top = -132.0
+offset_right = 95.0
+offset_bottom = 130.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_separation = -2
+theme_override_constants/outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_sjsyk")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 scroll_active = false
 scroll_following = true
+autowrap_mode = 2
 script = ExtResource("4_f1to4")
-
-[node name="Timer" type="Timer" parent="Main panel/tty"]
-unique_name_in_owner = true
-wait_time = 0.00999999999999999
-
-[node name="Button" type="Button" parent="Main panel"]
-offset_left = 199.99998
-offset_top = 113.333336
-offset_right = 223.99998
-offset_bottom = 137.33334
-toggle_mode = true
-icon = ExtResource("5_iqqan")
-flat = true
-
-[node name="Bulb" type="Sprite2D" parent="Main panel"]
-visible = false
-position = Vector2(-154, -8.000001)
-texture = ExtResource("6_co66w")
-
-[connection signal="timeout" from="Main panel/tty/Timer" to="Main panel/tty" method="_on_timer_timeout"]
-[connection signal="toggled" from="Main panel/Button" to="Main panel" method="_on_button_toggled"]
-[connection signal="toggled" from="Main panel/Button" to="Main panel/tty" method="_on_button_toggled"]

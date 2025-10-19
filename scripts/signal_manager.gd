@@ -43,7 +43,7 @@ func _on_signal_send_timeout() -> void:
 		if !next_node: 
 			break
 		elif next_node.get_parent().name == "Display":
-			%"tty/Main panel/tty".print_tty(working_string)
+			%"tty/Sprite2D/tty".print_tty(working_string)
 		var linked_port = _get_linked_port(next_node)
 		current_node = linked_port[0]
 		if !current_node: break
