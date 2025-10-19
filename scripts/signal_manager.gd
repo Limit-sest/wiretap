@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var initial_node = %Antenna/Output
-@onready var encoded_string = CipherUtils.encode_random("Hello world")
+@onready var encoded_string = CipherUtils.encode_random("You won! You can restart the game to get a different combination.")
 
 var decode_functions = {
 	"Numbers": CipherUtils.decode_numbers,
@@ -57,6 +57,9 @@ func _animate_module_pins(module: Node2D) -> void:
 func _on_signal_send_timeout() -> void:
 	var current_node = initial_node
 	var working_string = encoded_string
+	
+	if %"tty/Sprite2D/tty".print_index != -1:
+		return
 	
 	# Animate the starting module (Antenna)
 	await _animate_module_pins(current_node.get_parent())
