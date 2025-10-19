@@ -94,5 +94,6 @@ static func encode_random(string: String) -> String:
 		while used.has(index):
 			index = randi() % 3
 		used.append(index)
+		print("encoding with " + str(functions[index]))
 		working_string = functions[index].call(working_string)
 	return working_string

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var initial_node = %Anthenna/Output
+@onready var initial_node = %Antenna/Output
 @onready var encoded_string = CipherUtils.encode_random("Hello world")
 
 var decode_functions = {

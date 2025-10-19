@@ -11,7 +11,6 @@
 
 [node name="Main panel" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(359, 273)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_g1aup")
 script = ExtResource("2_lqweq")
@@ -32,7 +31,7 @@ script = ExtResource("4_f1to4")
 
 [node name="Timer" type="Timer" parent="Main panel/tty"]
 unique_name_in_owner = true
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
 
 [node name="Button" type="Button" parent="Main panel"]
 offset_left = 199.99998
