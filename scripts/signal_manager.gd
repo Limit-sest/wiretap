@@ -15,16 +15,38 @@ func _ready():
 	var display_input = $CanvasGroup/Display/Input
 	
 	var line = Line2D.new()
+	var path = Path2D.new()
+	path.curve = Curve2D.new()
 	line.width = 5.0
 	line.default_color = Color.from_hsv(0.58, 0.75, 0.9)  # Blueish color
 	WiringManager.add_child(line)
+	WiringManager.add_child(path)
 	
-	var start_pos = line.to_local(antenna_output.global_position)
-	var end_pos = line.to_local(display_input.global_position)
-	line.add_point(start_pos)
-	line.add_point(end_pos)
+	var start_pos = path.to_local(antenna_output.global_position)
+	var end_pos = path.to_local(display_input.global_position)
+
+	path.curve.add_point(start_pos)
+	path.curve.add_point(end_pos)
 	
-	WiringManager.connections.append([display_input, antenna_output, line])
+	var delta_vec = end_pos - start_pos
+	
+	if delta_vec.y > 0:
+		var out_point = Vector2(0, abs(delta_vec.y) * 0.5)
+		var in_point = Vector2(-abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0)
+		
+		path.curve.set_point_out(0, out_point)
+		path.curve.set_point_in(1, in_point)
+	else:
+		var out_point = Vector2(abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0)
+		var in_point = Vector2(0, -abs(delta_vec.y) * 0.5 * sign(delta_vec.y))
+		
+		path.curve.set_point_out(0, out_point)
+		path.curve.set_point_in(1, in_point)
+			
+		
+	line.points = path.curve.tessellate()
+	
+	WiringManager.connections.append([display_input, antenna_output, line, path])
 
 func _get_linked_port(first_port: Area2D): # Get output port in the same module
 	var parent = first_port.get_parent()
