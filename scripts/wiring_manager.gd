@@ -85,12 +85,12 @@ func _process(delta):
 		
 		if delta_vec.y > 0:
 			var out_point = Vector2(0, abs(delta_vec.y) * 0.5)
-			var in_point = Vector2(-abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0)
+			var in_point = Vector2(-abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0.2 * abs(delta_vec.x))
 			
 			active_curve.curve.set_point_out(0, out_point)
 			active_curve.curve.set_point_in(1, in_point)
 		else:
-			var out_point = Vector2(abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0)
+			var out_point = Vector2(abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0.2 * abs(delta_vec.x))
 			var in_point = Vector2(0, -abs(delta_vec.y) * 0.5 * sign(delta_vec.y))
 			
 			active_curve.curve.set_point_out(0, out_point)
