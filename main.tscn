@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=19 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bs1meisqsegby" path="res://scripts/signal_manager.gd" id="1_lquwl"]
@@ -19,6 +19,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4c57u"]
 radius = 12.0
+
+[sub_resource type="Curve2D" id="Curve2D_yaehf"]
+_data = {
+"points": PackedVector2Array(-72.435524, -0.56447387, 72.435524, 0.56447387, 0, 0, 0, 66, -37.729805, -1.2862694, 147.065, -132)
+}
+point_count = 2
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
@@ -109,17 +115,14 @@ position = Vector2(0, -26)
 texture = ExtResource("8_5vw27")
 
 [node name="pin1" type="Sprite2D" parent="CanvasGroup/Antenna"]
-visible = false
 position = Vector2(34, 30)
 texture = ExtResource("8_w48qg")
 
 [node name="pin2" type="Sprite2D" parent="CanvasGroup/Antenna"]
-visible = false
 position = Vector2(42, 30)
 texture = ExtResource("8_w48qg")
 
 [node name="pin3" type="Sprite2D" parent="CanvasGroup/Antenna"]
-visible = false
 position = Vector2(50, 30)
 texture = ExtResource("8_w48qg")
 
@@ -276,6 +279,10 @@ The signal flows through the wires, which you can connect using mouse."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_2cqfq")
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(514.935, 176)
+curve = SubResource("Curve2D_yaehf")
 
 [connection signal="timeout" from="Signal send" to="." method="_on_signal_send_timeout"]
 [connection signal="input_event" from="CanvasGroup/Display/Input" to="CanvasGroup/Display/Input" method="_on_input_event"]
