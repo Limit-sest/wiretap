@@ -18,7 +18,11 @@ func _ready():
 	var path = Path2D.new()
 	path.curve = Curve2D.new()
 	line.width = 5.0
-	line.default_color = Color.from_hsv(0.58, 0.75, 0.9)  # Blueish color
+	line.default_color = Color.from_hsv(0.65, 0.4, 0.95)
+	line.texture_mode = line.LINE_TEXTURE_TILE
+	line.texture = WiringManager.line_texture
+	line.begin_cap_mode = line.LINE_CAP_ROUND
+	line.end_cap_mode = line.LINE_CAP_ROUND
 	WiringManager.add_child(line)
 	WiringManager.add_child(path)
 	

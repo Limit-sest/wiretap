@@ -4,6 +4,7 @@ var active_line: Line2D
 var active_curve: Path2D
 var is_drawing = false
 var start_port = null
+var line_texture = load("res://assets/Sprites/Custom/Wire.png") 
 
 var connections = []
 
@@ -14,7 +15,11 @@ func _new_line() -> void:
 	active_line = Line2D.new()
 	active_curve = Path2D.new()
 	active_line.width = 5.0
-	active_line.default_color = Color.from_hsv(randf(), 0.75, 0.9)
+	active_line.default_color = Color.from_hsv(randf(), 0.4, 0.95)
+	active_line.texture_mode = active_line.LINE_TEXTURE_TILE
+	active_line.begin_cap_mode = active_line.LINE_CAP_ROUND
+	active_line.end_cap_mode = active_line.LINE_CAP_ROUND
+	active_line.texture = line_texture
 	add_child(active_line)
 	move_child(active_line, get_child_count()-1)
 	add_child(active_curve)
@@ -30,6 +35,25 @@ func  _delete_existing_connection(port) -> void:
 		remove_child(connection[2])
 		remove_child(connection[3])
 		connections.erase(connection)
+
+func _handle_gravity(point_1):
+	var point_0 = active_curve.curve.get_point_position(0)
+	var delta_vec = point_1 - point_0
+
+	if delta_vec.y > 0:
+		var out_point = Vector2(0, abs(delta_vec.y) * 0.5)
+		var in_point = Vector2(-abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0.2 * abs(delta_vec.x))
+		
+		active_curve.curve.set_point_out(0, out_point)
+		active_curve.curve.set_point_in(1, in_point)
+	else:
+		var out_point = Vector2(abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0.2 * abs(delta_vec.x))
+		var in_point = Vector2(0, -abs(delta_vec.y) * 0.5 * sign(delta_vec.y))
+		
+		active_curve.curve.set_point_out(0, out_point)
+		active_curve.curve.set_point_in(1, in_point)
+		
+	active_line.points = active_curve.curve.tessellate()
 
 func _ready():
 	_new_line()
@@ -63,6 +87,9 @@ func _unhandled_input(event):
 				var target_port = result[0].collider
 				if target_port.is_in_group("ports") and target_port != start_port and (target_port.is_in_group("input") != start_port.is_in_group("input")):
 					_delete_existing_connection(target_port)
+					active_curve.curve.set_point_position(1, active_curve.to_local(target_port.global_position))
+					_handle_gravity(active_curve.to_local(target_port.global_position))
+					
 					if target_port.is_in_group("input"):
 						connections.append([target_port, start_port, active_line, active_curve])
 					else:
@@ -77,24 +104,8 @@ func _unhandled_input(event):
 			
 func _process(delta):
 	if is_drawing:
-		var point_0 = active_curve.curve.get_point_position(0)
 		var point_1 = active_curve.to_local(_get_world_mouse_position())
 		active_curve.curve.set_point_position(1, point_1)
 		
-		var delta_vec = point_1 - point_0
+		_handle_gravity(point_1)
 		
-		if delta_vec.y > 0:
-			var out_point = Vector2(0, abs(delta_vec.y) * 0.5)
-			var in_point = Vector2(-abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0.2 * abs(delta_vec.x))
-			
-			active_curve.curve.set_point_out(0, out_point)
-			active_curve.curve.set_point_in(1, in_point)
-		else:
-			var out_point = Vector2(abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0.2 * abs(delta_vec.x))
-			var in_point = Vector2(0, -abs(delta_vec.y) * 0.5 * sign(delta_vec.y))
-			
-			active_curve.curve.set_point_out(0, out_point)
-			active_curve.curve.set_point_in(1, in_point)
-				
-			
-		active_line.points = active_curve.curve.tessellate()
