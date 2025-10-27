@@ -276,7 +276,6 @@ The signal flows through the wires, which you can connect using mouse."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_2cqfq")
-autoplay = true
 
 [connection signal="timeout" from="Signal send" to="." method="_on_signal_send_timeout"]
 [connection signal="input_event" from="CanvasGroup/Display/Input" to="CanvasGroup/Display/Input" method="_on_input_event"]
