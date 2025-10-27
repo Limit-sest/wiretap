@@ -2,9 +2,13 @@ extends Node
 
 var active_line: Line2D 
 var active_curve: Path2D
-var is_drawing = false
-var start_port = null
+var is_drawing: bool = false
+var start_port: Node2D = null
 var line_texture = load("res://assets/Sprites/Custom/Wire.png") 
+var inp_en = load("res://assets/Sprites/Custom/input.png")
+var inp_dis = load("res://assets/Sprites/Custom/input_disabled.png")
+var out_en = load("res://assets/Sprites/Custom/output.png")
+var out_dis = load("res://assets/Sprites/Custom/output_disabled.png")
 
 var connections = []
 
@@ -58,7 +62,7 @@ func _handle_gravity(point_1):
 func _ready():
 	_new_line()
 
-func start_wire(port_node):
+func start_wire(port_node: Node2D):
 	if is_drawing:
 		return
 
@@ -66,6 +70,17 @@ func start_wire(port_node):
 	start_port = port_node
 	active_curve.curve.clear_points()
 	_delete_existing_connection(start_port)
+	
+	if start_port.is_in_group('input'):
+		var nodes: Array[Node] = get_tree().get_nodes_in_group('input')
+		nodes.erase(start_port)
+		for node in nodes:
+			node.get_child(0).get_child(0).texture = inp_dis
+	elif start_port.is_in_group('output'):
+		var nodes: Array[Node] = get_tree().get_nodes_in_group('output')
+		nodes.erase(start_port)
+		for node in nodes:
+			node.get_child(0).get_child(0).texture = out_dis
 
 	var start_pos = active_curve.to_local(start_port.global_position)
 	var mouse_pos = active_curve.to_local(_get_world_mouse_position())
@@ -98,6 +113,17 @@ func _unhandled_input(event):
 					_new_line()
 					print("Connection created!")
 			is_drawing = false
+#			Make disabled ports enabled again
+			if start_port.is_in_group('input'):
+				var nodes: Array[Node] = get_tree().get_nodes_in_group('input')
+				nodes.erase(start_port)
+				for node in nodes:
+					node.get_child(0).get_child(0).texture = inp_en
+			elif start_port.is_in_group('output'):
+				var nodes: Array[Node] = get_tree().get_nodes_in_group('output')
+				nodes.erase(start_port)
+				for node in nodes:
+					node.get_child(0).get_child(0).texture = inp_en
 			start_port = null
 			active_line.clear_points()
 			active_curve.curve.clear_points()
