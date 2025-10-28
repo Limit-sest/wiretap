@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var initial_node = %Antenna/Output
 @onready var encoded_string = CipherUtils.encode_random("You won! You can restart the game to get a different combination.")
+@onready var beep_sfx: AudioStreamPlayer = %BeepSfx
 
 var decode_functions = {
 	"Numbers": CipherUtils.decode_numbers,
@@ -64,6 +65,9 @@ func _get_next_port(output_port: Area2D): # Get connected port with wire
 func _animate_module_pins(module: Node2D) -> void:
 	var pins = [module.find_child("pin1"), module.find_child("pin2"), module.find_child("pin3")]
 	
+	beep_sfx.pitch_scale = randf_range(0.9, 1.1)
+	beep_sfx.play()
+	
 	for i in range(3):
 		if pins[i]:
 			for pin in pins:
@@ -73,7 +77,8 @@ func _animate_module_pins(module: Node2D) -> void:
 			await get_tree().process_frame
 			await get_tree().process_frame
 			await get_tree().process_frame
-			
+
+	
 	
 	# Hide all pins after animation
 	for pin in pins:

@@ -4,6 +4,7 @@ var active_line: Line2D
 var active_curve: Path2D
 var is_drawing: bool = false
 var start_port: Node2D = null
+var click_sfx: AudioStreamPlayer
 var line_texture = load("res://assets/Sprites/Custom/Wire.png") 
 var inp_en = load("res://assets/Sprites/Custom/input.png")
 var inp_dis = load("res://assets/Sprites/Custom/input_disabled.png")
@@ -60,6 +61,9 @@ func _handle_gravity(point_1):
 	active_line.points = active_curve.curve.tessellate()
 
 func _ready():
+	click_sfx = AudioStreamPlayer.new()
+	click_sfx.stream = load("res://assets/sounds/switch.wav")
+	add_child(click_sfx)
 	_new_line()
 
 func start_wire(port_node: Node2D):
@@ -70,6 +74,9 @@ func start_wire(port_node: Node2D):
 	start_port = port_node
 	active_curve.curve.clear_points()
 	_delete_existing_connection(start_port)
+	
+	click_sfx.pitch_scale = 1
+	click_sfx.play()
 	
 	if start_port.is_in_group('input'):
 		var nodes: Array[Node] = get_tree().get_nodes_in_group('input')
@@ -105,6 +112,7 @@ func _unhandled_input(event):
 					active_curve.curve.set_point_position(1, active_curve.to_local(target_port.global_position))
 					_handle_gravity(active_curve.to_local(target_port.global_position))
 					
+					
 					if target_port.is_in_group("input"):
 						connections.append([target_port, start_port, active_line, active_curve])
 					else:
@@ -113,6 +121,10 @@ func _unhandled_input(event):
 					_new_line()
 					print("Connection created!")
 			is_drawing = false
+			
+			click_sfx.pitch_scale = 0.8
+			click_sfx.play()
+			
 #			Make disabled ports enabled again
 			if start_port.is_in_group('input'):
 				var nodes: Array[Node] = get_tree().get_nodes_in_group('input')
