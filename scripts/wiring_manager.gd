@@ -123,7 +123,7 @@ func _unhandled_input(event):
 				var nodes: Array[Node] = get_tree().get_nodes_in_group('output')
 				nodes.erase(start_port)
 				for node in nodes:
-					node.get_child(0).get_child(0).texture = inp_en
+					node.get_child(0).get_child(0).texture = out_en
 			start_port = null
 			active_line.clear_points()
 			active_curve.curve.clear_points()
