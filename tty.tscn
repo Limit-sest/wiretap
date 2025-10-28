@@ -9,12 +9,13 @@
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("3_u8rn0")
+centered = false
 
 [node name="tty" type="RichTextLabel" parent="Sprite2D"]
-offset_left = -62.0
-offset_top = -86.0
-offset_right = 64.0
-offset_bottom = 87.0
+offset_left = 22.0
+offset_top = 18.0
+offset_right = 148.0
+offset_bottom = 191.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/paragraph_separation = -2
 theme_override_constants/outline_size = 0

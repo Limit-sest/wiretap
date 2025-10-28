@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=22 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bs1meisqsegby" path="res://scripts/signal_manager.gd" id="1_lquwl"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://bhg25keglur22" path="res://assets/sounds/ambient.wav" id="17_yaehf"]
 [ext_resource type="AudioStream" uid="uid://dyw4muslti4mm" path="res://assets/sounds/ambient_drums.mp3" id="18_074og"]
 [ext_resource type="AudioStream" uid="uid://dx481gcm44cru" path="res://assets/sounds/beep.mp3" id="19_cegan"]
+[ext_resource type="Script" uid="uid://bghaddibpt6f1" path="res://addons/crt/crt.gd" id="20_82xsv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4c57u"]
 radius = 15.167572
@@ -26,6 +27,23 @@ radius = 15.167572
 [node name="Main" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_lquwl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="CRT" type="CanvasLayer" parent="CanvasLayer"]
+visible = false
+script = ExtResource("20_82xsv")
+resolution = Vector2(640, 360)
+scan_line_amount = 0.302
+scan_line_strength = -3.898999999999999
+warp_amount = 0.0
+noise_amount = 0.033
+interference_amount = 0.099
+grille_amount = 0.03
+aberation_amount = 0.382
+roll_line_amount = 0.0
+metadata/_custom_type_script = "uid://bghaddibpt6f1"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -2
@@ -37,7 +55,7 @@ texture = ExtResource("15_vivmo")
 
 [node name="tty" parent="." instance=ExtResource("1_ig7tw")]
 unique_name_in_owner = true
-position = Vector2(-205, -40)
+position = Vector2(-292, -152)
 
 [node name="Signal send" type="Timer" parent="."]
 wait_time = 2.5
