@@ -32,7 +32,6 @@ script = ExtResource("1_lquwl")
 layer = 0
 
 [node name="CRT" type="CanvasLayer" parent="CanvasLayer"]
-visible = false
 script = ExtResource("20_82xsv")
 resolution = Vector2(640, 360)
 scan_line_amount = 0.302
@@ -294,10 +293,12 @@ The signal flows through the wires, which you can connect using mouse."
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_yaehf")
 volume_db = -13.074
+autoplay = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_074og")
 volume_db = -16.045
+autoplay = true
 
 [node name="BeepSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

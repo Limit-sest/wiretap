@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://cajoogw0sqpl3"]
+
+[ext_resource type="Texture2D" uid="uid://m3ydo25kiy52" path="res://assets/Sprites/intro1.png" id="1_s2ta7"]
+[ext_resource type="Script" uid="uid://p24px4i6klrk" path="res://scripts/intro.gd" id="1_y6ycx"]
+[ext_resource type="Script" uid="uid://c4hddlf10xjnu" path="res://scripts/intro_img.gd" id="2_0a7ni"]
+[ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="2_ayt76"]
+[ext_resource type="Script" uid="uid://s2c8av5xd5xf" path="res://scripts/intro_label.gd" id="3_7a8ye"]
+[ext_resource type="Theme" uid="uid://diyqq4h1h20xn" path="res://assets/theme.tres" id="5_y72e6"]
+[ext_resource type="AudioStream" uid="uid://cn1s7t6uv4i5u" path="res://assets/sounds/static.wav" id="6_u2rf6"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_y6ycx")
+
+[node name="Bg" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="IntroImg" type="Sprite2D" parent="."]
+position = Vector2(320, 118)
+texture = ExtResource("1_s2ta7")
+script = ExtResource("2_0a7ni")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_left = 1.0
+offset_top = 206.0
+offset_right = 640.0
+offset_bottom = 316.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ayt76")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+visible_characters_behavior = 1
+script = ExtResource("3_7a8ye")
+
+[node name="NextTimer" type="Timer" parent="CenterContainer/Label"]
+wait_time = 1.5
+one_shot = true
+
+[node name="PrintTimer" type="Timer" parent="CenterContainer/Label"]
+wait_time = 0.05
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 595.0
+offset_top = 338.0
+offset_right = 639.0
+offset_bottom = 359.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("5_y72e6")
+text = "Skip >"
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_u2rf6")
+volume_db = -5.349
+autoplay = true
+
+[connection signal="next_img" from="CenterContainer/Label" to="IntroImg" method="_on_label_next_img"]
+[connection signal="next_scene" from="CenterContainer/Label" to="." method="_next_scene"]
+[connection signal="timeout" from="CenterContainer/Label/NextTimer" to="CenterContainer/Label" method="_on_next_timer_timeout"]
+[connection signal="timeout" from="CenterContainer/Label/PrintTimer" to="CenterContainer/Label" method="_on_print_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_next_scene"]
