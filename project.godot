@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SceneManager="*res://scripts/scene_manager.gd"
 WiringManager="*res://scripts/wiring_manager.gd"
 
 [display]
