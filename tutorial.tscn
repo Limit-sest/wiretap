@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://bkkahneeveh5r"]
+[gd_scene load_steps=17 format=3 uid="uid://bkkahneeveh5r"]
 
-[ext_resource type="Script" uid="uid://bs1meisqsegby" path="res://scripts/main/signal_manager.gd" id="1_4hjyh"]
+[ext_resource type="Script" uid="uid://dc2k4gbxwaat1" path="res://scripts/tutorial/signal_manager.gd" id="1_bsk3x"]
 [ext_resource type="Script" uid="uid://bghaddibpt6f1" path="res://addons/crt/crt.gd" id="1_vmw6g"]
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="2_4hjyh"]
 [ext_resource type="Texture2D" uid="uid://cxfelrk8jll08" path="res://assets/Sprites/Custom/module_bg.png" id="3_bsk3x"]
@@ -14,13 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://bqb8v5u7h8hrd" path="res://assets/Sprites/Custom/antenna_text.png" id="11_tfgte"]
 [ext_resource type="Texture2D" uid="uid://c4t77te82hyv4" path="res://assets/Sprites/Custom/numbers_text.png" id="12_dyhf1"]
 [ext_resource type="AudioStream" uid="uid://dx481gcm44cru" path="res://assets/sounds/beep.mp3" id="14_bsk3x"]
+[ext_resource type="Theme" uid="uid://diyqq4h1h20xn" path="res://assets/theme.tres" id="15_dl7dh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53tq2"]
 radius = 15.167572
 
 [node name="Tutorial" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_4hjyh")
+script = ExtResource("1_bsk3x")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -181,7 +182,17 @@ volume_db = 0.595
 wait_time = 2.5
 autostart = true
 
+[node name="TutorialLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 242.0
+offset_top = 277.0
+offset_right = 567.0
+offset_bottom = 306.0
+theme = ExtResource("15_dl7dh")
+autowrap_mode = 2
+
 [connection signal="input_event" from="CanvasGroup/Display/Input" to="CanvasGroup/Display/Input" method="_on_input_event"]
 [connection signal="input_event" from="CanvasGroup/Antenna/Output" to="CanvasGroup/Antenna/Output" method="_on_input_event"]
 [connection signal="input_event" from="CanvasGroup/Numbers/Output" to="CanvasGroup/Numbers/Output" method="_on_input_event"]
 [connection signal="input_event" from="CanvasGroup/Numbers/Input" to="CanvasGroup/Numbers/Input" method="_on_input_event"]
+[connection signal="timeout" from="Signal send" to="." method="_on_signal_send_timeout"]
