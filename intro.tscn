@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cajoogw0sqpl3"]
 
 [ext_resource type="Texture2D" uid="uid://m3ydo25kiy52" path="res://assets/Sprites/intro1.png" id="1_s2ta7"]
-[ext_resource type="Script" uid="uid://p24px4i6klrk" path="res://scripts/intro.gd" id="1_y6ycx"]
-[ext_resource type="Script" uid="uid://c4hddlf10xjnu" path="res://scripts/intro_img.gd" id="2_0a7ni"]
+[ext_resource type="Script" uid="uid://p24px4i6klrk" path="res://scripts/intro/intro.gd" id="1_y6ycx"]
+[ext_resource type="Script" uid="uid://c4hddlf10xjnu" path="res://scripts/intro/intro_img.gd" id="2_0a7ni"]
 [ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="2_ayt76"]
-[ext_resource type="Script" uid="uid://s2c8av5xd5xf" path="res://scripts/intro_label.gd" id="3_7a8ye"]
+[ext_resource type="Script" uid="uid://s2c8av5xd5xf" path="res://scripts/intro/intro_label.gd" id="3_7a8ye"]
 [ext_resource type="Theme" uid="uid://diyqq4h1h20xn" path="res://assets/theme.tres" id="5_y72e6"]
 [ext_resource type="AudioStream" uid="uid://cn1s7t6uv4i5u" path="res://assets/sounds/static.wav" id="6_u2rf6"]
 

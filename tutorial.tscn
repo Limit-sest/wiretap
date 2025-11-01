@@ -1,0 +1,187 @@
+[gd_scene load_steps=16 format=3 uid="uid://bkkahneeveh5r"]
+
+[ext_resource type="Script" uid="uid://bs1meisqsegby" path="res://scripts/main/signal_manager.gd" id="1_4hjyh"]
+[ext_resource type="Script" uid="uid://bghaddibpt6f1" path="res://addons/crt/crt.gd" id="1_vmw6g"]
+[ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="2_4hjyh"]
+[ext_resource type="Texture2D" uid="uid://cxfelrk8jll08" path="res://assets/Sprites/Custom/module_bg.png" id="3_bsk3x"]
+[ext_resource type="Script" uid="uid://dpmaueosf60vl" path="res://port.gd" id="4_dl7dh"]
+[ext_resource type="Texture2D" uid="uid://pnxp8nov1c1m" path="res://assets/Sprites/Custom/input.png" id="5_r4o0u"]
+[ext_resource type="Texture2D" uid="uid://bnomwum6omcts" path="res://assets/Sprites/Custom/display_symbolt.png" id="6_k08xv"]
+[ext_resource type="Texture2D" uid="uid://dw7b83wjviduf" path="res://assets/Sprites/Custom/display_text.png" id="7_g52lx"]
+[ext_resource type="Texture2D" uid="uid://cvhvsebtm7c81" path="res://assets/Sprites/Content/Power Hub/5.png" id="8_0lped"]
+[ext_resource type="Texture2D" uid="uid://kligwqb1a4ks" path="res://assets/Sprites/Custom/output.png" id="9_dudfa"]
+[ext_resource type="Texture2D" uid="uid://xvroh88gxhg" path="res://assets/Sprites/Custom/antenna_symbol.png" id="10_5gpbq"]
+[ext_resource type="Texture2D" uid="uid://bqb8v5u7h8hrd" path="res://assets/Sprites/Custom/antenna_text.png" id="11_tfgte"]
+[ext_resource type="Texture2D" uid="uid://c4t77te82hyv4" path="res://assets/Sprites/Custom/numbers_text.png" id="12_dyhf1"]
+[ext_resource type="AudioStream" uid="uid://dx481gcm44cru" path="res://assets/sounds/beep.mp3" id="14_bsk3x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53tq2"]
+radius = 15.167572
+
+[node name="Tutorial" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_4hjyh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="CRT" type="CanvasLayer" parent="CanvasLayer"]
+visible = false
+script = ExtResource("1_vmw6g")
+resolution = Vector2(640, 360)
+scan_line_amount = 0.302
+scan_line_strength = -3.898999999999999
+warp_amount = 0.0
+noise_amount = 0.033
+interference_amount = 0.099
+grille_amount = 0.03
+aberation_amount = 0.382
+roll_line_amount = 0.0
+metadata/_custom_type_script = "uid://bghaddibpt6f1"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="tty" parent="." instance=ExtResource("2_4hjyh")]
+unique_name_in_owner = true
+position = Vector2(24, 24)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+z_index = -1
+position = Vector2(419, 70)
+
+[node name="Display" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(104, 111)
+texture = ExtResource("3_bsk3x")
+
+[node name="Input" type="Area2D" parent="CanvasGroup/Display" groups=["input", "ports"]]
+position = Vector2(-74, -1)
+collision_layer = 2
+script = ExtResource("4_dl7dh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Display/Input"]
+shape = SubResource("CircleShape2D_53tq2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Display/Input/CollisionShape2D"]
+texture = ExtResource("5_r4o0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Display"]
+position = Vector2(75, -11)
+texture = ExtResource("6_k08xv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasGroup/Display"]
+position = Vector2(0, -26)
+texture = ExtResource("7_g52lx")
+
+[node name="pin1" type="Sprite2D" parent="CanvasGroup/Display"]
+visible = false
+position = Vector2(34, 30)
+texture = ExtResource("8_0lped")
+
+[node name="pin2" type="Sprite2D" parent="CanvasGroup/Display"]
+visible = false
+position = Vector2(42, 30)
+texture = ExtResource("8_0lped")
+
+[node name="pin3" type="Sprite2D" parent="CanvasGroup/Display"]
+visible = false
+position = Vector2(50, 30)
+texture = ExtResource("8_0lped")
+
+[node name="Antenna" type="Sprite2D" parent="CanvasGroup"]
+unique_name_in_owner = true
+position = Vector2(-104, 111)
+texture = ExtResource("3_bsk3x")
+
+[node name="Output" type="Area2D" parent="CanvasGroup/Antenna" groups=["output", "ports"]]
+position = Vector2(74, -13.333336)
+collision_layer = 2
+script = ExtResource("4_dl7dh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Antenna/Output"]
+position = Vector2(0, 0.33333397)
+shape = SubResource("CircleShape2D_53tq2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Antenna/Output/CollisionShape2D"]
+texture = ExtResource("9_dudfa")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Antenna"]
+position = Vector2(-72, -0.6666673)
+texture = ExtResource("10_5gpbq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasGroup/Antenna"]
+position = Vector2(0, -26)
+texture = ExtResource("11_tfgte")
+
+[node name="pin1" type="Sprite2D" parent="CanvasGroup/Antenna"]
+position = Vector2(34, 30)
+texture = ExtResource("8_0lped")
+
+[node name="pin2" type="Sprite2D" parent="CanvasGroup/Antenna"]
+position = Vector2(42, 30)
+texture = ExtResource("8_0lped")
+
+[node name="pin3" type="Sprite2D" parent="CanvasGroup/Antenna"]
+position = Vector2(50, 30)
+texture = ExtResource("8_0lped")
+
+[node name="Numbers" type="Sprite2D" parent="CanvasGroup"]
+texture = ExtResource("3_bsk3x")
+
+[node name="Output" type="Area2D" parent="CanvasGroup/Numbers" groups=["output", "ports"]]
+position = Vector2(74, -13.333332)
+collision_layer = 2
+script = ExtResource("4_dl7dh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Numbers/Output"]
+position = Vector2(-0.1666565, 0.16666698)
+shape = SubResource("CircleShape2D_53tq2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Numbers/Output/CollisionShape2D"]
+texture = ExtResource("9_dudfa")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasGroup/Numbers"]
+position = Vector2(0, -26)
+texture = ExtResource("12_dyhf1")
+
+[node name="Input" type="Area2D" parent="CanvasGroup/Numbers" groups=["input", "ports"]]
+position = Vector2(-75, -1.0000005)
+collision_layer = 2
+script = ExtResource("4_dl7dh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Numbers/Input"]
+position = Vector2(-0.33332443, 0.3333335)
+shape = SubResource("CircleShape2D_53tq2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Numbers/Input/CollisionShape2D"]
+position = Vector2(0.50000507, 0)
+texture = ExtResource("5_r4o0u")
+
+[node name="pin1" type="Sprite2D" parent="CanvasGroup/Numbers"]
+visible = false
+position = Vector2(34, 30)
+texture = ExtResource("8_0lped")
+
+[node name="pin2" type="Sprite2D" parent="CanvasGroup/Numbers"]
+visible = false
+position = Vector2(42, 30)
+texture = ExtResource("8_0lped")
+
+[node name="pin3" type="Sprite2D" parent="CanvasGroup/Numbers"]
+visible = false
+position = Vector2(50, 30)
+texture = ExtResource("8_0lped")
+
+[node name="BeepSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("14_bsk3x")
+volume_db = 0.595
+
+[node name="Signal send" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[connection signal="input_event" from="CanvasGroup/Display/Input" to="CanvasGroup/Display/Input" method="_on_input_event"]
+[connection signal="input_event" from="CanvasGroup/Antenna/Output" to="CanvasGroup/Antenna/Output" method="_on_input_event"]
+[connection signal="input_event" from="CanvasGroup/Numbers/Output" to="CanvasGroup/Numbers/Output" method="_on_input_event"]
+[connection signal="input_event" from="CanvasGroup/Numbers/Input" to="CanvasGroup/Numbers/Input" method="_on_input_event"]
