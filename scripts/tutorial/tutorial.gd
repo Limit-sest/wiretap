@@ -42,6 +42,10 @@ func _on_base_module_send_signal(_text: String, _step: int) -> void:
 	_set_tutorial(3)
 
 
-func _on_display_send_signal(text: String, step: int) -> void:
+func _on_display_send_signal(_text: String, step: int) -> void:
 	if step == 2:
 		_set_tutorial(4)
+		$Button.visible = true
+
+func _on_button_pressed() -> void:
+	SceneManager.change_scene("res://main.tscn")

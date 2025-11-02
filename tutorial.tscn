@@ -94,3 +94,4 @@ text = "Play"
 [connection signal="send_signal" from="HFlowContainer/Display" to="." method="_on_display_send_signal"]
 [connection signal="send_signal" from="HFlowContainer/Display" to="tty2" method="_on_display_send_signal"]
 [connection signal="send_signal" from="HFlowContainer/Antenna" to="." method="_on_antenna_send_signal"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
