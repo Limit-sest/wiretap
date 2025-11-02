@@ -10,6 +10,7 @@ texture = ExtResource("1_ippni")
 
 [node name="BaseModule" type="Control"]
 texture_filter = 1
+custom_minimum_size = Vector2(178, 82)
 layout_mode = 3
 anchor_right = 0.27800003
 anchor_bottom = 0.22800002

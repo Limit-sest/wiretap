@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwni15nxn8eah"]
+
+[ext_resource type="PackedScene" uid="uid://cwhyj2ac20n2l" path="res://modules/cipher/CipherModule.tscn" id="1_nt756"]
+[ext_resource type="Script" uid="uid://d37whkpocusmx" path="res://modules/numbers/numbers_module.gd" id="2_ryoqu"]
+[ext_resource type="Texture2D" uid="uid://c4t77te82hyv4" path="res://assets/Sprites/Custom/numbers_text.png" id="3_iweka"]
+
+[node name="BaseModule" instance=ExtResource("1_nt756")]
+script = ExtResource("2_ryoqu")
+
+[node name="TextureRect" parent="Panel/CenterContainer" index="0"]
+texture = ExtResource("3_iweka")
