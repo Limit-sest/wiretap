@@ -1,18 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://ecls1n4djcxu"]
+[gd_scene load_steps=14 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="1_ig7tw"]
 [ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bgkr535hd43nt" path="res://modules/display/DisplayModule.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://bnojaj5q1h2ln" path="res://modules/antenna/AntennaModule.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dofci6dndd72w" path="res://modules/caesar/CaesarModule.tscn" id="10_efxa6"]
+[ext_resource type="PackedScene" path="res://modules/morse/MorseModule.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cwni15nxn8eah" path="res://modules/numbers/NumbersModule.tscn" id="11_ycdy4"]
+[ext_resource type="Script" uid="uid://dhlwyv0enq1j1" path="res://scripts/main/main.gd" id="12_abcde"]
 [ext_resource type="Texture2D" uid="uid://c8lx38grn8fhl" path="res://assets/Sprites/bg.png" id="15_vivmo"]
 [ext_resource type="AudioStream" uid="uid://bhg25keglur22" path="res://assets/sounds/ambient.wav" id="17_yaehf"]
 [ext_resource type="AudioStream" uid="uid://dyw4muslti4mm" path="res://assets/sounds/ambient_drums.mp3" id="18_074og"]
 [ext_resource type="AudioStream" uid="uid://dx481gcm44cru" path="res://assets/sounds/beep.mp3" id="19_cegan"]
 [ext_resource type="Script" uid="uid://bghaddibpt6f1" path="res://addons/crt/crt.gd" id="20_82xsv"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("antenna", "display")]
 texture_filter = 1
+script = ExtResource("12_abcde")
+antenna = NodePath("HFlowContainer/Antenna")
+display = NodePath("HFlowContainer/Display")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -68,30 +74,32 @@ unique_name_in_owner = true
 stream = ExtResource("19_cegan")
 volume_db = 0.595
 
-[node name="BaseModule" parent="." instance=ExtResource("9_4c57u")]
-custom_minimum_size = Vector2(0, 0)
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 124.0
-offset_top = -149.0
-offset_right = 302.0
-offset_bottom = -67.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+offset_left = -64.0
+offset_top = -151.0
+offset_right = 314.0
+offset_bottom = 170.0
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="Caesar" parent="HFlowContainer" instance=ExtResource("10_efxa6")]
+layout_mode = 2
+
+[node name="Morse" parent="HFlowContainer" instance=ExtResource("11_efxa6")]
+layout_mode = 2
+
+[node name="Numbers" parent="HFlowContainer" instance=ExtResource("11_ycdy4")]
+layout_mode = 2
+
+[node name="Display" parent="HFlowContainer" instance=ExtResource("9_4c57u")]
+unique_name_in_owner = true
+layout_mode = 2
 mouse_filter = 0
 
-[node name="BaseModule2" parent="." instance=ExtResource("10_efxa6")]
-offset_left = 126.0
-offset_top = -36.0
-offset_right = 304.0
-offset_bottom = 46.0
-
-[node name="BaseModule3" parent="." instance=ExtResource("10_4c57u")]
-offset_left = 127.0
-offset_top = 68.0
-offset_right = 305.0
-offset_bottom = 150.0
+[node name="Antenna" parent="HFlowContainer" instance=ExtResource("10_4c57u")]
+unique_name_in_owner = true
+layout_mode = 2
 mouse_filter = 0
+encode_number = 2
 
-[connection signal="send_signal" from="BaseModule" to="tty" method="_on_display_send_signal"]
+[connection signal="send_signal" from="HFlowContainer/Display" to="tty" method="_on_display_send_signal"]

@@ -31,21 +31,25 @@ func _animate_error() -> void:
 			pin.modulate.g = 0.1
 			pin.modulate.b = 0.0
 
-	for i in range(5):
+	for i in range(3):
 		beep_sfx.pitch_scale = 0.8
 		beep_sfx.play()
 		
 		for pin in pins:
 			if pin:
 				pin.visible = true
-		await get_tree().process_frame
-		await get_tree().process_frame
-		await get_tree().process_frame
+		
+		for j in range(5):
+			await get_tree().process_frame
 		
 		for pin in pins:
 			if pin:
 				pin.visible = false
-		await get_tree().process_frame
-		await get_tree().process_frame
-		await get_tree().process_frame
 		
+		for j in range(5):
+			await get_tree().process_frame
+	
+	for pin in pins:
+		if pin:
+			pin.modulate.g = 1
+			pin.modulate.b = 1

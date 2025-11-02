@@ -9,6 +9,9 @@
 
 [node name="BaseModule" instance=ExtResource("1_q3j71")]
 
+[node name="Panel" parent="." index="0"]
+custom_minimum_size = Vector2(178, 82)
+
 [node name="TextureRect" parent="Panel/CenterContainer" index="0"]
 texture = ExtResource("2_amw0v")
 

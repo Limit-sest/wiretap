@@ -85,6 +85,60 @@ func _toggle_other_ports(disabled: bool):
 		if node != start_port:
 			node.disabled = disabled
 
+func create_wire(p_start_port, p_target_port):
+	var line = Line2D.new()
+	var curve = Path2D.new()
+	line.width = 5.0
+	line.default_color = Color.from_hsv(randf(), 0.4, 0.95)
+	line.texture_mode = line.LINE_TEXTURE_TILE
+	line.begin_cap_mode = line.LINE_CAP_ROUND
+	line.end_cap_mode = line.LINE_CAP_ROUND
+	line.texture = line_texture
+	line.z_index = 10
+	add_child(line)
+	add_child(curve)
+	curve.curve = Curve2D.new()
+
+	var start_pos_global = p_start_port.get_global_rect().get_center()
+	var target_pos_global = p_target_port.get_global_rect().get_center()
+	
+	var start_pos_local = curve.to_local(start_pos_global)
+	var target_pos_local = curve.to_local(target_pos_global)
+	
+	curve.curve.add_point(start_pos_local)
+	curve.curve.add_point(target_pos_local)
+	
+	var delta_vec = target_pos_local - start_pos_local
+
+	if delta_vec.y > 0:
+		var out_point = Vector2(0, abs(delta_vec.y) * 0.5)
+		var in_point = Vector2(-abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0.2 * abs(delta_vec.x))
+		
+		curve.curve.set_point_out(0, out_point)
+		curve.curve.set_point_in(1, in_point)
+	else:
+		var out_point = Vector2(abs(delta_vec.x) * 0.5 * sign(delta_vec.x), 0.2 * abs(delta_vec.x))
+		var in_point = Vector2(0, -abs(delta_vec.y) * 0.5 * sign(delta_vec.y))
+		
+		curve.curve.set_point_out(0, out_point)
+		curve.curve.set_point_in(1, in_point)
+		
+	line.points = curve.curve.tessellate()
+	
+	var output_port
+	var input_port
+	
+	if p_target_port.is_in_group("input"):
+		input_port = p_target_port
+		output_port = p_start_port
+		connections.append([input_port, output_port, line, curve])
+	else:
+		input_port = p_start_port
+		output_port = p_target_port
+		connections.append([input_port, output_port, line, curve])
+	
+	output_port.next_node = input_port
+
 func _ready():
 	click_sfx = AudioStreamPlayer.new()
 	click_sfx.stream = load("res://assets/sounds/switch.wav")
