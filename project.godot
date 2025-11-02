@@ -33,6 +33,12 @@ window/stretch/scale_mode="integer"
 
 enabled=PackedStringArray("res://addons/crt/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+ports=""
+input=""
+output=""
+
 [layer_names]
 
 2d_physics/layer_2="ports"
