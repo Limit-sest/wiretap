@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4wuumyitonl"]
+[gd_scene load_steps=11 format=3 uid="uid://d4wuumyitonl"]
 
 [ext_resource type="Texture2D" uid="uid://cxfelrk8jll08" path="res://assets/Sprites/Custom/module_bg.png" id="1_ippni"]
+[ext_resource type="Script" uid="uid://dioc304gcuurg" path="res://modules/base_module.gd" id="1_shlye"]
 [ext_resource type="Texture2D" uid="uid://pnxp8nov1c1m" path="res://assets/Sprites/Custom/input.png" id="2_yrwks"]
 [ext_resource type="Texture2D" uid="uid://ddypphqmk4r4s" path="res://assets/Sprites/Custom/input_disabled.png" id="3_y7110"]
-[ext_resource type="Script" uid="uid://b3nh0ng3dwfc2" path="res://modules/port.gd" id="4_43y58"]
 [ext_resource type="Texture2D" uid="uid://kligwqb1a4ks" path="res://assets/Sprites/Custom/output.png" id="4_ofup8"]
 [ext_resource type="Script" uid="uid://cc32ja4xp3c03" path="res://modules/input.gd" id="4_op6lv"]
 [ext_resource type="Texture2D" uid="uid://ddkuwqloljfaq" path="res://assets/Sprites/Custom/output_disabled.png" id="5_43y58"]
 [ext_resource type="Texture2D" uid="uid://cvhvsebtm7c81" path="res://assets/Sprites/Content/Power Hub/5.png" id="7_3tf07"]
+[ext_resource type="Script" uid="uid://b7jnqb5eybg8e" path="res://modules/output.gd" id="7_op6lv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3tf07"]
 texture = ExtResource("1_ippni")
@@ -21,6 +22,7 @@ offset_right = 0.07998657
 offset_bottom = -0.08000183
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_shlye")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -74,7 +76,7 @@ grow_vertical = 2
 texture_normal = ExtResource("4_ofup8")
 texture_disabled = ExtResource("5_43y58")
 stretch_mode = 3
-script = ExtResource("4_43y58")
+script = ExtResource("7_op6lv")
 
 [node name="pin1" type="TextureRect" parent="."]
 visible = false
@@ -106,5 +108,7 @@ offset_bottom = 79.0
 texture = ExtResource("7_3tf07")
 stretch_mode = 2
 
+[connection signal="send_signal" from="." to="Panel/Output" method="_on_send_signal"]
 [connection signal="pressed" from="Panel/Input" to="Panel/Input" method="_on_pressed"]
+[connection signal="signal_recieved" from="Panel/Input" to="." method="_on_signal_recieved"]
 [connection signal="pressed" from="Panel/Output" to="Panel/Output" method="_on_pressed"]
