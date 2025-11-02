@@ -41,7 +41,6 @@ texture = ExtResource("15_vivmo")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="tty" parent="." instance=ExtResource("1_ig7tw")]
-unique_name_in_owner = true
 position = Vector2(-292, -152)
 
 [node name="Tutorial" type="RichTextLabel" parent="."]
@@ -94,3 +93,5 @@ offset_top = 68.0
 offset_right = 305.0
 offset_bottom = 150.0
 mouse_filter = 0
+
+[connection signal="send_signal" from="BaseModule" to="tty" method="_on_display_send_signal"]
