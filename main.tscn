@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://ecls1n4djcxu"]
 
 [ext_resource type="PackedScene" uid="uid://chijpwqlktb06" path="res://tty.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://bs1meisqsegby" path="res://scripts/main/signal_manager.gd" id="1_lquwl"]
 [ext_resource type="FontFile" uid="uid://yf0sdapmf0uv" path="res://assets/monogram-extended.ttf" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bgkr535hd43nt" path="res://modules/display/DisplayModule.tscn" id="9_4c57u"]
+[ext_resource type="PackedScene" uid="uid://bnojaj5q1h2ln" path="res://modules/antenna/AntennaModule.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dofci6dndd72w" path="res://modules/caesar/CaesarModule.tscn" id="10_efxa6"]
 [ext_resource type="Texture2D" uid="uid://c8lx38grn8fhl" path="res://assets/Sprites/bg.png" id="15_vivmo"]
 [ext_resource type="AudioStream" uid="uid://bhg25keglur22" path="res://assets/sounds/ambient.wav" id="17_yaehf"]
@@ -13,14 +13,12 @@
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_lquwl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 visible = false
 
 [node name="CRT" type="CanvasLayer" parent="CanvasLayer"]
-visible = false
 script = ExtResource("20_82xsv")
 resolution = Vector2(640, 360)
 scan_line_amount = 0.302
@@ -45,10 +43,6 @@ texture = ExtResource("15_vivmo")
 [node name="tty" parent="." instance=ExtResource("1_ig7tw")]
 unique_name_in_owner = true
 position = Vector2(-292, -152)
-
-[node name="Signal send" type="Timer" parent="."]
-wait_time = 2.5
-autostart = true
 
 [node name="Tutorial" type="RichTextLabel" parent="."]
 offset_left = -287.0
@@ -77,12 +71,16 @@ volume_db = 0.595
 
 [node name="BaseModule" parent="." instance=ExtResource("9_4c57u")]
 custom_minimum_size = Vector2(0, 0)
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 124.0
 offset_top = -149.0
 offset_right = 302.0
 offset_bottom = -67.0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 0
 
 [node name="BaseModule2" parent="." instance=ExtResource("10_efxa6")]
 offset_left = 126.0
@@ -90,4 +88,9 @@ offset_top = -36.0
 offset_right = 304.0
 offset_bottom = 46.0
 
-[connection signal="timeout" from="Signal send" to="." method="_on_signal_send_timeout"]
+[node name="BaseModule3" parent="." instance=ExtResource("10_4c57u")]
+offset_left = 127.0
+offset_top = 68.0
+offset_right = 305.0
+offset_bottom = 150.0
+mouse_filter = 0

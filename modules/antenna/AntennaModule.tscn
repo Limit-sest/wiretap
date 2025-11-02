@@ -43,6 +43,7 @@ offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 6
+action_mode = 0
 texture_normal = ExtResource("2_x4bpx")
 texture_disabled = ExtResource("3_g11rf")
 stretch_mode = 3

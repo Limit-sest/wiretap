@@ -18,12 +18,14 @@ offset_right = 0.07998657
 offset_bottom = -0.08000183
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_shlye")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 178.0
 offset_bottom = 82.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_3tf07")
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]

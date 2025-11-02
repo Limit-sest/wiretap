@@ -6,6 +6,7 @@
 
 [node name="BaseModule" instance=ExtResource("1_nt756")]
 custom_minimum_size = Vector2(0, 0)
+mouse_filter = 0
 script = ExtResource("2_ryoqu")
 
 [node name="TextureRect" parent="Panel/CenterContainer" index="0"]
