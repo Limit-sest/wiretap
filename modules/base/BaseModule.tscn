@@ -1,14 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4wuumyitonl"]
+[gd_scene load_steps=6 format=3 uid="uid://d4wuumyitonl"]
 
 [ext_resource type="Texture2D" uid="uid://cxfelrk8jll08" path="res://assets/Sprites/Custom/module_bg.png" id="1_ippni"]
 [ext_resource type="Script" uid="uid://dioc304gcuurg" path="res://modules/base/base_module.gd" id="1_shlye"]
-[ext_resource type="Texture2D" uid="uid://pnxp8nov1c1m" path="res://assets/Sprites/Custom/input.png" id="2_yrwks"]
-[ext_resource type="Texture2D" uid="uid://ddypphqmk4r4s" path="res://assets/Sprites/Custom/input_disabled.png" id="3_y7110"]
-[ext_resource type="Texture2D" uid="uid://kligwqb1a4ks" path="res://assets/Sprites/Custom/output.png" id="4_ofup8"]
-[ext_resource type="Script" uid="uid://cc32ja4xp3c03" path="res://modules/base/input.gd" id="4_op6lv"]
-[ext_resource type="Texture2D" uid="uid://ddkuwqloljfaq" path="res://assets/Sprites/Custom/output_disabled.png" id="5_43y58"]
 [ext_resource type="Texture2D" uid="uid://cvhvsebtm7c81" path="res://assets/Sprites/Content/Power Hub/5.png" id="7_3tf07"]
-[ext_resource type="Script" uid="uid://b7jnqb5eybg8e" path="res://modules/base/output.gd" id="7_op6lv"]
 [ext_resource type="AudioStream" uid="uid://dx481gcm44cru" path="res://assets/sounds/beep.mp3" id="10_5x36q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3tf07"]
@@ -44,41 +38,6 @@ grow_vertical = 2
 layout_mode = 2
 stretch_mode = 2
 
-[node name="Input" type="TextureButton" parent="Panel" groups=["input", "ports"]]
-custom_minimum_size = Vector2(21, 21)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 30.0
-offset_right = -152.0
-offset_bottom = -31.0
-grow_horizontal = 2
-grow_vertical = 2
-action_mode = 0
-texture_normal = ExtResource("2_yrwks")
-texture_disabled = ExtResource("3_y7110")
-stretch_mode = 3
-script = ExtResource("4_op6lv")
-
-[node name="Output" type="TextureButton" parent="Panel" groups=["output", "ports"]]
-custom_minimum_size = Vector2(21, 21)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 153.0
-offset_top = 18.0
-offset_right = -4.0
-offset_bottom = -43.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_ofup8")
-texture_disabled = ExtResource("5_43y58")
-stretch_mode = 3
-script = ExtResource("7_op6lv")
-
 [node name="pin1" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -100,7 +59,7 @@ texture = ExtResource("7_3tf07")
 stretch_mode = 2
 
 [node name="pin3" type="TextureRect" parent="."]
-modulate = Color(1, 0.35686275, 0, 1)
+visible = false
 layout_mode = 0
 offset_left = 131.0
 offset_top = 63.0
@@ -113,8 +72,3 @@ stretch_mode = 2
 unique_name_in_owner = true
 stream = ExtResource("10_5x36q")
 volume_db = 0.595
-
-[connection signal="send_signal" from="." to="Panel/Output" method="_on_send_signal"]
-[connection signal="pressed" from="Panel/Input" to="Panel/Input" method="_on_pressed"]
-[connection signal="signal_recieved" from="Panel/Input" to="." method="_on_signal_recieved"]
-[connection signal="pressed" from="Panel/Output" to="Panel/Output" method="_on_pressed"]
