@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4wuumyitonl"]
+
+[ext_resource type="Texture2D" uid="uid://cxfelrk8jll08" path="res://assets/Sprites/Custom/module_bg.png" id="1_ippni"]
+[ext_resource type="Texture2D" uid="uid://pnxp8nov1c1m" path="res://assets/Sprites/Custom/input.png" id="2_yrwks"]
+[ext_resource type="Texture2D" uid="uid://ddypphqmk4r4s" path="res://assets/Sprites/Custom/input_disabled.png" id="3_y7110"]
+[ext_resource type="Texture2D" uid="uid://kligwqb1a4ks" path="res://assets/Sprites/Custom/output.png" id="4_ofup8"]
+[ext_resource type="Texture2D" uid="uid://ddkuwqloljfaq" path="res://assets/Sprites/Custom/output_disabled.png" id="5_43y58"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3tf07"]
+texture = ExtResource("1_ippni")
+
+[node name="BaseModule" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchor_right = 0.27800003
+anchor_bottom = 0.22800002
+offset_right = 0.07998657
+offset_bottom = -0.08000183
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 178.0
+offset_bottom = 82.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3tf07")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer"]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="Input" type="TextureButton" parent="Panel"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 32.0
+offset_right = -154.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+texture_normal = ExtResource("2_yrwks")
+texture_disabled = ExtResource("3_y7110")
+stretch_mode = 3
+
+[node name="Output" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 155.0
+offset_top = 20.0
+offset_right = -6.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_ofup8")
+texture_disabled = ExtResource("5_43y58")
