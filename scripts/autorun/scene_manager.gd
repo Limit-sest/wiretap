@@ -31,6 +31,7 @@ func change_scene(scene_path: String) -> void:
 	call_deferred("_deferred_change_scene", scene_path)
 
 func _deferred_change_scene(scene_path: String) -> void:
+	WiringManager.remove_all_wires()
 	if current_scene:
 		current_scene.free()
 	

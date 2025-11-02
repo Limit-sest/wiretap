@@ -210,3 +210,13 @@ func _process(delta):
 		active_curve.curve.set_point_position(1, point_1)
 		
 		_handle_gravity(point_1)
+
+func remove_all_wires():
+	for connection in connections:
+		if connection.size() > 1 and connection[1]:
+			connection[1].next_node = null
+		if connection.size() > 2 and connection[2]:
+			connection[2].queue_free()
+		if connection.size() > 3 and connection[3]:
+			connection[3].queue_free()
+	connections.clear()
