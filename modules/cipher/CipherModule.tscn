@@ -50,5 +50,7 @@ texture_disabled = ExtResource("7_mjv0m")
 stretch_mode = 3
 script = ExtResource("8_b3ibg")
 
+[connection signal="send_signal" from="." to="Output" method="_on_send_signal"]
 [connection signal="pressed" from="Input" to="Input" method="_on_pressed"]
+[connection signal="signal_recieved" from="Input" to="." method="_on_signal_recieved"]
 [connection signal="pressed" from="Output" to="Output" method="_on_pressed"]

@@ -1,6 +1,5 @@
 extends "res://modules/base/base_module.gd"
 
-@onready var beep_sfx: AudioStreamPlayer = %BeepSfx
 var ciphered_text: String
 @export var original_text: String = "test"
 @export var encode_number: int = 1
@@ -14,7 +13,7 @@ func _ready() -> void:
 		ciphered_text = module.encode(ciphered_text, (encode_number - 1) - i)
 
 func _on_signal_send_timeout() -> void:
-	_animate_success()
+	await _animate_success()
 	print("sending: " + ciphered_text)
 	send_signal.emit(ciphered_text, 0)
 

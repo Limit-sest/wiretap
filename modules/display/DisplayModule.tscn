@@ -46,3 +46,4 @@ texture = ExtResource("3_bao1h")
 stretch_mode = 2
 
 [connection signal="pressed" from="Input" to="Input" method="_on_pressed"]
+[connection signal="signal_recieved" from="Input" to="." method="_on_signal_recieved"]

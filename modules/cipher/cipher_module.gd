@@ -1,7 +1,6 @@
 extends "res://modules/base/base_module.gd"
 
 var _cipher_history = []
-@onready var beep_sfx: AudioStreamPlayer = %BeepSfx
 
 func encode(text_in: String, step: int) -> String:
 	var text_out: String = _do_encode(text_in)
@@ -20,7 +19,6 @@ func _on_signal_recieved(_text: String, step: int) -> void:
 			correct_entry = hist_entry
 	
 	if correct_entry:
-		await _animate_success()
 		super._on_signal_recieved(correct_entry.original, step)
 	else:
 		await _animate_error()
@@ -51,22 +49,3 @@ func _animate_error() -> void:
 		await get_tree().process_frame
 		await get_tree().process_frame
 		
-func _animate_success() -> void:
-	var pins = [self.find_child("pin1"), self.find_child("pin2"), self.find_child("pin3")]
-	
-	beep_sfx.pitch_scale = randf_range(0.9, 1.1)
-	beep_sfx.play()
-	
-	for i in range(3):
-		if pins[i]:
-			for pin in pins:
-				if pin:
-					pin.visible = false
-			pins[i].visible = true
-			await get_tree().process_frame
-			await get_tree().process_frame
-			await get_tree().process_frame
-
-	for pin in pins:
-		if pin:
-			pin.visible = false
