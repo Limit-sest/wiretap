@@ -100,6 +100,7 @@ mouse_filter = 0
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 0
+original_text = "can you hear me?"
 encode_number = 2
 
 [connection signal="send_signal" from="HFlowContainer/Display" to="tty" method="_on_display_send_signal"]
