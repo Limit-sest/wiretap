@@ -5,3 +5,7 @@
 
 [node name="BaseModule" groups=["cipher_module"] instance=ExtResource("1_q0ffq")]
 script = ExtResource("2_ryoqu")
+
+[node name="pin3" parent="." index="3"]
+visible = false
+modulate = Color(1, 1, 1, 1)
