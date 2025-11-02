@@ -1,4 +1,4 @@
-extends "res://modules/port.gd"
+extends "res://modules/base/port.gd"
 
 var next_node
 

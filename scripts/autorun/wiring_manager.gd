@@ -66,7 +66,7 @@ func _ready():
 	add_child(click_sfx)
 	_new_line()
 
-func start_wire(port_node: Node2D):
+func start_wire(port_node):
 	if is_drawing:
 		return
 

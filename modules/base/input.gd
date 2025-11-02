@@ -1,4 +1,4 @@
-extends "res://modules/port.gd"
+extends "res://modules/base/port.gd"
 
 signal signal_recieved(text: String, step: int)
 
