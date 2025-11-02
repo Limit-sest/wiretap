@@ -38,6 +38,7 @@ enabled=PackedStringArray("res://addons/crt/plugin.cfg", "res://addons/godot_sup
 ports=""
 input=""
 output=""
+cipher_module=""
 
 [layer_names]
 

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwhyj2ac20n2l"]
+
+[ext_resource type="PackedScene" uid="uid://d4wuumyitonl" path="res://modules/base/BaseModule.tscn" id="1_q0ffq"]
+[ext_resource type="Script" uid="uid://d1xe1rfj4brgg" path="res://modules/cipher/cipher_module.gd" id="2_ryoqu"]
+
+[node name="BaseModule" groups=["cipher_module"] instance=ExtResource("1_q0ffq")]
+script = ExtResource("2_ryoqu")

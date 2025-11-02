@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4wuumyitonl"]
+[gd_scene load_steps=12 format=3 uid="uid://d4wuumyitonl"]
 
 [ext_resource type="Texture2D" uid="uid://cxfelrk8jll08" path="res://assets/Sprites/Custom/module_bg.png" id="1_ippni"]
 [ext_resource type="Script" uid="uid://dioc304gcuurg" path="res://modules/base/base_module.gd" id="1_shlye"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ddkuwqloljfaq" path="res://assets/Sprites/Custom/output_disabled.png" id="5_43y58"]
 [ext_resource type="Texture2D" uid="uid://cvhvsebtm7c81" path="res://assets/Sprites/Content/Power Hub/5.png" id="7_3tf07"]
 [ext_resource type="Script" uid="uid://b7jnqb5eybg8e" path="res://modules/base/output.gd" id="7_op6lv"]
+[ext_resource type="AudioStream" uid="uid://dx481gcm44cru" path="res://assets/sounds/beep.mp3" id="10_5x36q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3tf07"]
 texture = ExtResource("1_ippni")
@@ -99,7 +100,7 @@ texture = ExtResource("7_3tf07")
 stretch_mode = 2
 
 [node name="pin3" type="TextureRect" parent="."]
-visible = false
+modulate = Color(1, 0.35686275, 0, 1)
 layout_mode = 0
 offset_left = 131.0
 offset_top = 63.0
@@ -107,6 +108,11 @@ offset_right = 147.0
 offset_bottom = 79.0
 texture = ExtResource("7_3tf07")
 stretch_mode = 2
+
+[node name="BeepSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_5x36q")
+volume_db = 0.595
 
 [connection signal="send_signal" from="." to="Panel/Output" method="_on_send_signal"]
 [connection signal="pressed" from="Panel/Input" to="Panel/Input" method="_on_pressed"]
