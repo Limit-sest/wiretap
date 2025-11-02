@@ -6,14 +6,16 @@ var ciphered_text: String
 @export var encode_number: int = 1
 
 func _ready() -> void:
+	ciphered_text = original_text
 	var cipher_modules = get_tree().get_nodes_in_group('cipher_module')
-	for i in range(encode_number):
+	for i in range(min(encode_number, cipher_modules.size())):
 		var module = cipher_modules[randi_range(0, cipher_modules.size() - 1)]
 		cipher_modules.erase(module)
 		ciphered_text = module.encode(ciphered_text, (encode_number - 1) - i)
 
 func _on_signal_send_timeout() -> void:
 	_animate_success()
+	print("sending: " + ciphered_text)
 	send_signal.emit(ciphered_text, 0)
 
 func _animate_success() -> void:

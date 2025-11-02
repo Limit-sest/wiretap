@@ -53,5 +53,6 @@ script = ExtResource("4_s74fi")
 wait_time = 2.5
 autostart = true
 
+[connection signal="send_signal" from="." to="Output" method="_on_send_signal"]
 [connection signal="pressed" from="Output" to="Output" method="_on_pressed"]
 [connection signal="timeout" from="Signal send" to="." method="_on_signal_send_timeout"]

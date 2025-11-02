@@ -49,6 +49,9 @@ func _delete_existing_connection(port) -> void:
 		if connection.has(port):
 			to_be_deleted.append(connection)
 	for connection in to_be_deleted:
+		var output_port = connection[1]
+		output_port.next_node = null
+		
 		remove_child(connection[2])
 		remove_child(connection[3])
 		connections.erase(connection)
@@ -120,12 +123,20 @@ func _input(event):
 				active_curve.curve.set_point_position(1, target_pos_local)
 				_handle_gravity(target_pos_local)
 				
+				var output_port
+				var input_port
+				
 				if target_port.is_in_group("input"):
-					connections.append([target_port, start_port, active_line, active_curve])
-					start_port.next_node = target_port
+					input_port = target_port
+					output_port = start_port
+					connections.append([input_port, output_port, active_line, active_curve])
 				else:
-					connections.append([start_port, target_port, active_line, active_curve])
-					target_port.next_node = start_port
+					input_port = start_port
+					output_port = target_port
+					connections.append([input_port, output_port, active_line, active_curve])
+				
+				output_port.next_node = input_port
+				
 				_new_line()
 			is_drawing = false
 			
